@@ -795,7 +795,7 @@ var app = new Vue({
 /* 9 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n@import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\r\n                                                                  ^\r\n      Invalid CSS after '...ets/bootstrap\";': expected 1 selector or at-rule, was \"<<<<<<< HEAD\"\r\n      in C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\sass\\app.scss (line 9, column 68)\n    at runLoaders (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\webpack\\lib\\NormalModule.js:192:19)\n    at C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\sass-loader\\lib\\loader.js:57:13)\n    at Object.<anonymous> (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\sass-loader\\node_modules\\async\\dist\\async.js:2243:31)\n    at Object.callback (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\sass-loader\\node_modules\\async\\dist\\async.js:906:16)\n    at options.error (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\node-sass\\lib\\index.js:294:32)");
 
 /***/ }),
 /* 10 */
@@ -31664,11 +31664,7 @@ var Component = __webpack_require__(35)(
   /* cssModules */
   null
 )
-<<<<<<< HEAD
-Component.options.__file = "C:\\wamp64\\www\\laravel\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
-=======
-Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
->>>>>>> 1a03c47acb05ef2ca56501495c8a8ed36ee9baa4
+Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
