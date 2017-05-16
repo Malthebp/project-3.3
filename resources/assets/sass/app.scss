@@ -1,9 +1,75 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Muli);
 
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// background image and font-family
+body {
+	font-family: 'Muli', sans-serif;
+	background-image: url(images/background.jpg);
+	background-size: cover;
+    background-repeat: no-repeat;
+}
+
+// header styling 
+
+header {
+	color: $light;
+	width: 100%;
+	padding: 5px;
+	display: flex;
+    justify-content: space-between;
+	
+	h1 {
+		font-size: 1.3em;
+		margin: 0;
+	}
+
+	p {
+		font-size: 1.3em;
+		margin:0;
+	}
+
+}
+
+//bottom navigation, potisioning and styling
+
+nav {
+	color: $light;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+	ul{
+		padding: 0;
+		width: 100%;
+
+		li{
+			display: inline-table;
+			font-size: 2.5em;
+			width: (100%/4);
+			text-align: center;
+
+			a {
+				color: $light;
+			}	
+		}
+
+		li:nth-child(1n+2) {
+			border-left: solid 0.5px $light;
+		}
+
+	}
+
+}
+
+//styling for active in navigation 
+
+.active {
+	color: $brand-secondary;
+}
