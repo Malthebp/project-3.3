@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Schedule
+Route::get('/schedule', 'ClassController@index');
+
 
 //TESTER
 Route::get('/profile/user', function () {
