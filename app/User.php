@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Lecture; 
 
 class User extends Authenticatable
@@ -32,7 +35,7 @@ class User extends Authenticatable
 
     public function lectures()
     {
-        return $this->belongsToMany(Lecture::class);
+        return $this->belongsToMany(Lecture::class, 'lecture_reason_user');
     }
 
     public function schoolClass()
@@ -40,4 +43,21 @@ class User extends Authenticatable
         return $this->belongsTo('App\SchoolClass');
     }
 
+    public function isAttending($lectureId)
+    {
+        $id = Auth::id();
+        $exists = DB::table('lecture_reason_user')->where([
+                ['lecture_id', '=', $lectureId],
+                ['user_id', '=', $id],
+            ])->get();
+
+        foreach ($exists as $x)
+        {
+            if($x->reason_id == 0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

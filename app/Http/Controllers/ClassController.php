@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\SchoolClass; 
 use App\Lecture;
+use App\Teacher;
 
 class ClassController extends Controller
 {
@@ -17,6 +18,7 @@ class ClassController extends Controller
     	$lectures = SchoolClass::with('lectures')->find($class->id);
     	$teacher = Lecture::with('users')->get();
 
-    	return $teacher;
+    	return view('test.scheduletest')->with('lectures', $teacher);
+    	// return $teacher;
     }
 }

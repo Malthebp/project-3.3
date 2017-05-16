@@ -19,8 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Schedule
+//Schedule test
 Route::get('/schedule', 'ClassController@index');
+Route::post('/schedule/notattending', 'LectureController@notAttending');
+Route::post('/schedule/attending', 'LectureController@attending');
 
 
 //TESTER

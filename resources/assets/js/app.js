@@ -21,3 +21,7 @@ const app = new Vue({
     el: '#app'
 });
 
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+});
+
