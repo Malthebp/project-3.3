@@ -795,7 +795,7 @@ var app = new Vue({
 /* 9 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: \r\n\tcolor: $light;\r\n       ^\r\n      Undefined variable: \"$light\".\r\n      in C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\sass\\app.scss (line 23, column 9)\n    at runLoaders (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\webpack\\lib\\NormalModule.js:192:19)\n    at C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\loader-runner\\lib\\LoaderRunner.js:230:18\n    at context.callback (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\sass-loader\\lib\\loader.js:57:13)\n    at Object.<anonymous> (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\sass-loader\\node_modules\\async\\dist\\async.js:2243:31)\n    at Object.callback (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\sass-loader\\node_modules\\async\\dist\\async.js:906:16)\n    at options.error (C:\\xampp\\htdocs\\mdu\\project-3.3\\node_modules\\node-sass\\lib\\index.js:294:32)");
 
 /***/ }),
 /* 10 */
