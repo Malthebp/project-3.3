@@ -31664,7 +31664,11 @@ var Component = __webpack_require__(35)(
   /* cssModules */
   null
 )
+<<<<<<< HEAD
+Component.options.__file = "C:\\wamp64\\www\\laravel\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
+=======
 Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
+>>>>>>> 1a03c47acb05ef2ca56501495c8a8ed36ee9baa4
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
