@@ -45,19 +45,35 @@ class User extends Authenticatable
 
     public function isAttending($lectureId)
     {
+        // Get the authenticated users id. Laravel provides this function. 
         $id = Auth::id();
+        //Get the row in the lecture_reason_user exists.
         $exists = DB::table('lecture_reason_user')->where([
                 ['lecture_id', '=', $lectureId],
                 ['user_id', '=', $id],
             ])->get();
 
-        foreach ($exists as $x)
+        //If nothing was found in the database
+        if(!empty($exists))
         {
-            if($x->reason_id == 0)
+            //Foreach whatever was found in the database. 
+            foreach ($exists as $x)
             {
-                return false;
+                //Check if what was found in database has a reason_id that is 0 or not. If it is 0, the student attended, if it has another id, another row has been set in the reasons table, and the student has a reason for not being at class/did not attend class.
+                if($x->reason_id == 0)
+                {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
-        return true;
+        return;
     }
+
+    public function isAtSchool()
+    {
+        return false;
+    }
+
 }

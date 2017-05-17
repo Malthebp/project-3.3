@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\User;
 use App\SchoolClass;
 use App\Reason;
@@ -24,4 +27,6 @@ class Lecture extends Model
     {
     	return $this->hasMany(Reason::class);
     }
+
+
 }

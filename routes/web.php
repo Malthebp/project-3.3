@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/schedule', 'ClassController@index');
 Route::post('/schedule/notattending', 'LectureController@notAttending');
 Route::post('/schedule/attending', 'LectureController@attending');
+Route::get('/lecture/get/{date}', 'LectureController@get');
 
 
 //TESTER
