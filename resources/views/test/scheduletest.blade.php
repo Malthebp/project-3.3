@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @foreach ($lectures as $lecture)
+  {{--   @foreach ($lectures as $lecture)
        <div class="panel panel-default col-xs-6">
          @foreach ($lecture->users as $teacher)
           <h3>{{$teacher->name}}</h3>
@@ -50,7 +50,7 @@
             </div>
           </div>
        </div>
-    @endforeach
+    @endforeach --}}
 
 
     <schedule></schedule>

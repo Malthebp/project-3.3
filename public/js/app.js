@@ -41534,9 +41534,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['lecture']
+	props: ['lecture'],
+	data: function data() {
+		return {
+			isAttending: false,
+			notAttending: null,
+			message: 'Attending',
+			isLoading: false,
+			isAtSchool: false
+		};
+	},
+	methods: {
+		attend: function attend(lectureId) {
+			var _this = this;
+
+			this.isLoading = true;
+			axios.post('/lecture/attend/' + lectureId).then(function (response) {
+				_this.isAttending = true;
+				_this.isLoading = false;
+				_this.message = response.data.message;
+				console.log(response.data.message);
+			}, function (response) {
+				_this.isLoading = false;
+				_this.message = response.data.message;
+			});
+		},
+		checkForAttendance: function checkForAttendance() {
+			var _this2 = this;
+
+			this.isLoading = true;
+			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
+				_this2.isLoading = false;
+				_this2.isAttending = response.data.attending;
+				console.log(response.data.attending);
+			});
+		},
+		isAtSchoolFunc: function isAtSchoolFunc() {
+			var _this3 = this;
+
+			axios.get('/user/isatschool/' + this.lecture.id).then(function (response) {
+				_this3.isAtSchool = response.data.isAtSchool;
+			});
+		}
+
+	},
+	created: function created() {
+		this.checkForAttendance();
+		this.isAtSchoolFunc();
+	}
 });
 
 /***/ }),
@@ -41578,9 +41635,35 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', [_c('p', [_vm._v(_vm._s(_vm.lecture.description))]), _vm._v(" "), _c('ul', _vm._l((_vm.lecture.users), function(user) {
+  return _c('section', {
+    staticClass: "panel panel-default"
+  }, [_c('p', [_vm._v(_vm._s(_vm.lecture.description))]), _vm._v(" "), _c('ul', _vm._l((_vm.lecture.users), function(user) {
     return _c('li', [_vm._v(_vm._s(user.name))])
-  }))])
+  })), _vm._v(" "), (_vm.isAtSchool) ? _c('section', [(!_vm.isAttending) ? _c('button', {
+    staticClass: "btn btn-success",
+    on: {
+      "click": function($event) {
+        _vm.attend(_vm.lecture.id)
+      }
+    }
+  }, [(!_vm.isLoading) ? _c('span', [_vm._v(_vm._s(_vm.message))]) : _vm._e(), _vm._v(" "), (_vm.isLoading) ? _c('span', [_c('i', {
+    staticClass: "fa fa-spinner fa-spin",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })]) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.isAttending == true) ? _c('button', {
+    staticClass: "btn btn-success",
+    attrs: {
+      "disabled": ""
+    }
+  }, [_vm._v("You attends")]) : _vm._e(), _vm._v(" "), (_vm.isAttending == 'not attending') ? _c('button', {
+    staticClass: "btn btn-danger",
+    attrs: {
+      "disabled": ""
+    }
+  }, [_vm._v("Not Attending")]) : _vm._e()]) : _c('section', [(!_vm.isAtSchool) ? _c('button', {
+    staticClass: "btn btn-danger"
+  }, [_vm._v("Not attending")]) : _vm._e()])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -41619,6 +41702,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -41631,13 +41716,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			year: null,
 			month: null,
 			lectures: [],
-			message: null
+			message: null,
+			isLoading: false
 		};
 	},
 	methods: {
 		datesInWeek: function datesInWeek() {
 			//Start of the current week, the add() adds another week, which is specified by a variable. 
-
 			var startOfWeek = __WEBPACK_IMPORTED_MODULE_0_moment___default()().startOf('week').add(this.chosenWeek, 'weeks');
 			var endOfWeek = __WEBPACK_IMPORTED_MODULE_0_moment___default()().endOf('week').add(this.chosenWeek, 'weeks');
 
@@ -41646,22 +41731,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			//Generate all the dates in the given week.
 			while (day <= endOfWeek) {
+				//Pushes the new date to the array. Format example: 14, Su
 				this.days.push(__WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD, dd'));
+
 				day = day.clone().add(1, 'd');
+				//Set the month to the year of the week.
 				this.month = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('MM');
+				//Set the year to the year of the week.
 				this.year = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('YYYY');
 			}
 
 			console.log(this.days);
 		},
 		nextWeek: function nextWeek() {
+			//make the chosenweek the next
 			this.chosenWeek++;
+			//Reset the array
 			this.days = [];
+			//Initialize a new calendar with the new week.
 			this.datesInWeek();
 		},
 		previousWeek: function previousWeek() {
+
+			//Make the chosenweek the previous. 
 			this.chosenWeek--;
+			//Reset the array
 			this.days = [];
+			//Initialize a new calendar with the new week. 
 			this.datesInWeek();
 		},
 		getLecture: function getLecture(date) {
@@ -41672,15 +41768,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			//Create a date that contains the correct information about the picked date. Year, month, day. 
 			var date = this.year + '-' + this.month + '-' + date;
 
+			//Start loading icon
+			this.isLoading = true;
 			axios.get('/lecture/get/' + date).then(function (response) {
 				// console.log(response.data);
 				//Getting current picked days lectures. By AJAX
 				_this.lectures = response.data.lecture;
+
+				//stop loading icon
+				_this.isLoading = false;
 			});
 		}
 	},
 	created: function created() {
+		//Initialize the calendar  
 		this.datesInWeek();
+
+		//When this component is created, get the current day and lectures. 
+		var today = __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('DD, dd');
+		this.getLecture(today);
 	}
 });
 
@@ -41727,7 +41833,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-md-6"
-  }, [_c('nav', [_vm._v("\n\t" + _vm._s(_vm.month) + "  " + _vm._s(_vm.year) + "\n\t\t"), _c('ul', _vm._l((_vm.days), function(day) {
+  }, [_c('nav', [_vm._v("\n\t\t" + _vm._s(_vm.month) + "  " + _vm._s(_vm.year) + "\n\t\t\t"), _c('ul', _vm._l((_vm.days), function(day) {
     return _c('li', [_c('a', {
       attrs: {
         "href": "#"
@@ -41748,13 +41854,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Next week")])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
-  }, _vm._l((_vm.lectures), function(lecture) {
-    return _c('lecture', {
+  }, [_vm._l((_vm.lectures), function(lecture) {
+    return (!_vm.isLoading) ? _c('lecture', {
       attrs: {
         "lecture": lecture
       }
-    })
-  }))])
+    }) : _vm._e()
+  }), _vm._v(" "), (_vm.isLoading) ? _c('span', [_c('i', {
+    staticClass: "fa fa-spinner fa-spin",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })]) : _vm._e()], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
