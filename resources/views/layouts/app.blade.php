@@ -17,16 +17,21 @@
 </head>
 <body>
     <div id="app">
+@if(!Auth::guest())
 <header>
     <h1>(name on app)</h1>
-    <p>435  <i class="fa fa-diamond" aria-hidden="true"></i></p>
+    <p>456<i class="fa fa-diamond" aria-hidden="true"></i></p>
 </header>
+@endif
         @yield('content')
-<nav>
+
+@if(!Auth::guest())
+<nav id="bottom-nav">
     <ul>
-    <li><a href="/calendar"><i class="fa fa-calendar active" aria-hidden="true"></i></a></li><li><a href="/pointshop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li><li><a href="/canvas"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li><li><a href="/user/{{echo //Auth::id()}}"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+    <li><a href="/calendar"><i class="fa fa-calendar active" aria-hidden="true"></i></a></li><li><a href="/pointshop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li><li><a href="/canvas"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li><li><a href="/user/"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
     </ul>
 </nav>
+@endif
     </div>
 
     <!-- Scripts -->
