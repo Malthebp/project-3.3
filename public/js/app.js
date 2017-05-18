@@ -17335,6 +17335,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['lecture'],
@@ -17344,7 +17367,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			notAttending: true,
 			message: 'Attending',
 			isLoading: false,
-			isAtSchool: false
+			isAtSchool: false,
+			comment: null,
+			isActive: false,
+			messageNotAttend: 'Submit'
 		};
 	},
 	methods: {
@@ -17362,24 +17388,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.message = response.data.message;
 			});
 		},
-		checkForAttendance: function checkForAttendance() {
+		notAttend: function notAttend(lectureId) {
 			var _this2 = this;
 
 			this.isLoading = true;
-			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
+			axios.post('/lecture/notattending/' + lectureId, { comment: this.comment }).then(function (response) {
+				_this2.isAttending = false;
 				_this2.isLoading = false;
-				_this2.isAttending = response.data.attending;
+				_this2.messageNotAttend = response.data.message;
+				_this2.isActive = false;
+				_this2.checkForAttendance();
+				console.log(response.data.message);
+			}, function (response) {
+				_this2.isLoading = false;
+				_this2.messageNotAttend = response.data.message;
+			});
+		},
+
+		checkForAttendance: function checkForAttendance() {
+			var _this3 = this;
+
+			this.isLoading = true;
+			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
+				_this3.isLoading = false;
+				_this3.isAttending = response.data.attending;
 				console.log(response.data.attending);
 			});
 		},
 		isAtSchoolFunc: function isAtSchoolFunc() {
-			var _this3 = this;
+			var _this4 = this;
 
 			axios.get('/user/isatschool/' + this.lecture.id).then(function (response) {
-				_this3.isAtSchool = response.data.isAtSchool;
+				_this4.isAtSchool = response.data.isAtSchool;
 			});
+		},
+		showModal: function showModal() {
+			if (this.isActive) {
+				this.isActive = false;
+			} else {
+				this.isActive = true;
+			}
 		}
-
 	},
 	created: function created() {
 		this.checkForAttendance();
@@ -17397,7 +17446,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Lecture__);
-//
 //
 //
 //
@@ -47757,7 +47805,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47791,7 +47839,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
+Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Lecture.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47825,7 +47873,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
+Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Schedule.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47879,7 +47927,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', {
+  return _c('section', [_c('div', {
     staticClass: "panel panel-default"
   }, [_c('p', [_vm._v(_vm._s(_vm.lecture.description))]), _vm._v(" "), _c('ul', _vm._l((_vm.lecture.users), function(user) {
     return _c('li', [_vm._v(_vm._s(user.name))])
@@ -47911,9 +47959,72 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "disabled": ""
     }
   }, [_vm._v("Not attended")]) : _vm._e(), _vm._v(" "), (!_vm.isAtSchool && !_vm.isAttending) ? _c('section', [_c('button', {
-    staticClass: "btn btn-danger"
-  }, [_vm._v("Not attending")])]) : _vm._e()])
-},staticRenderFns: []}
+    staticClass: "btn btn-danger",
+    on: {
+      "click": _vm.showModal
+    }
+  }, [_vm._v("Not attending")])]) : _vm._e()]), _vm._v(" "), _c('section', {
+    class: [_vm.isActive ? 'modalActive' : '', 'modal']
+  }, [_c('div', {
+    staticClass: "modal__background",
+    on: {
+      "click": _vm.showModal
+    }
+  }), _vm._v(" "), _c('section', {
+    staticClass: "modal__content"
+  }, [_vm._m(0), _vm._v(" "), _c('article', {
+    staticClass: "modal__body"
+  }, [_c('form', {
+    staticClass: "form"
+  }, [_c('label', {
+    attrs: {
+      "for": "comment"
+    }
+  }, [_vm._v("Tell why you can't come")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.comment),
+      expression: "comment"
+    }],
+    attrs: {
+      "type": "text",
+      "name": ""
+    },
+    domProps: {
+      "value": (_vm.comment)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.comment = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('section', {
+    staticClass: "modal__footer"
+  }, [_c('button', {
+    staticClass: "btn btn-danger",
+    on: {
+      "click": function($event) {
+        _vm.notAttend(_vm.lecture.id)
+      }
+    }
+  }, [(!_vm.isLoading) ? _c('span', [_vm._v(_vm._s(_vm.messageNotAttend))]) : _vm._e(), _vm._v(" "), (_vm.isLoading) ? _c('span', [_c('i', {
+    staticClass: "fa fa-spinner fa-spin",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })]) : _vm._e()]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-success",
+    on: {
+      "click": _vm.showModal
+    }
+  }, [_vm._v("Cancel")])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('section', {
+    staticClass: "modal__header"
+  }, [_c('h3', [_vm._v("Not attending")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -47929,9 +48040,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
     staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-6"
-  }, [_c('button', {
+  }, [_c('div', [_c('button', {
     staticClass: "schedule-button",
     on: {
       "click": _vm.previousWeek
@@ -47968,9 +48077,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_vm._l((_vm.lectures), function(lecture) {
+  })])]), _vm._v(" "), _c('div', [_vm._l((_vm.lectures), function(lecture) {
     return (!_vm.isLoading) ? _c('lecture', {
       key: lecture.id,
       attrs: {

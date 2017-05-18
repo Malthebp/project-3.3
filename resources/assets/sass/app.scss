@@ -3,17 +3,24 @@
 @import url(https://fonts.googleapis.com/css?family=Muli);
 
 // Variables
+@import "_variables";
 
-@import "variables";
+
+@import "_modal";
+
+@import "_forms";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-
+* {
+	padding: 0px;
+	margin: 0px;
+}
 // background image and font-family
 body {
 	font-family: 'Muli', sans-serif;
-	// background-image: url('../images/background.jpg');
+	background-image: url('/images/background.jpg');
 	background-size: cover;
     background-repeat: no-repeat;
 }

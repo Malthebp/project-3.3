@@ -43,7 +43,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\SchoolClass');
     }
 
-    
+    public function test()
+    {
+        return 'llooolz';
+    }    
 
 
 
