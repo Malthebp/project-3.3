@@ -6,6 +6,8 @@
  */
 
 require('./bootstrap');
+// require('./bin/materialize.min.js');
+require('./bin/materialize.min');
 
 window.Vue = require('vue');
 
@@ -16,8 +18,14 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+// Vue.component('example', require('./components/Lecture.vue'));
+Vue.component('schedule', require('./components/Schedule.vue'));
 
 const app = new Vue({
     el: '#app'
+});
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
 });
 

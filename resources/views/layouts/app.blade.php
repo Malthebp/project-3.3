@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{ config('app.name', 'Laravel') }} -  @yield('title')</title>
 
     <!-- Styles -->
@@ -17,16 +17,21 @@
 </head>
 <body>
     <div id="app">
+@if(!Auth::guest())
 <header>
     <h1>(name on app)</h1>
-    <p>425 <i class="fa fa-diamond" aria-hidden="true"></i></p>
+    <p>{{Auth::user()->balance()}}<i class="fa fa-diamond" aria-hidden="true"></i></p>
 </header>
+@endif
         @yield('content')
-<nav>
+
+@if(!Auth::guest())
+<nav id="bottom-nav">
     <ul>
     <li><a href="/calendar"><i class="fa fa-calendar active" aria-hidden="true"></i></a></li><li><a href="/pointshop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li><li><a href="/canvas"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li><li><a href="/user/{{Auth::id()}}"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
     </ul>
 </nav>
+@endif
     </div>
 
     <!-- Scripts -->

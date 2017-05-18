@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@sec
+
 @section('content')
 <div id="pointshop" class="container">
     <div class="row">

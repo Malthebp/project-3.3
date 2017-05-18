@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use App\Lecture; 
 
 class User extends Authenticatable
 {
@@ -26,9 +30,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function Product() {
-        return $this->belongsToMany('App\Product');
-    }
     
+    public function Product() {
+        return $this->belongsToMany('App\Product')->withPivot('created_at');
+    }
+
+
+    public function lectures()
+    {
+        return $this->belongsToMany(Lecture::class, 'lecture_reason_user');
+    }
+
+    public function schoolClass()
+    {
+        return $this->belongsTo('App\SchoolClass');
+    }
+    public function balance(){
+        $bal = DB::table('users')->where('id', Auth::id())->value('balance');
+        return $bal;
+    }
 }
