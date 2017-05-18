@@ -9,11 +9,12 @@
 			<span v-if="!isLoading">{{message}}</span>
 			<span v-if="isLoading"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i></span>
 			</button>
-			<button disabled v-if="isAttending == true" class="btn btn-success" >You attends</button>
-			<button class="btn btn-danger" disabled v-if="isAttending == 'not attending'">Not Attending</button>
 		</section>
-		<section v-else>
-			<button v-if="!isAtSchool" class="btn btn-danger">Not attending</button>
+		<button disabled v-if="isAttending && isAttending != 'excused' && isAttending != 'not attended'" class="btn btn-success" >You attends</button>
+		<button class="btn btn-danger" disabled v-if="isAttending == 'excused'">Excused</button>
+		<button class="btn btn-danger" disabled v-if="isAttending == 'not attended'">Not attended</button>
+		<section v-if="!isAtSchool && !isAttending">
+			<button class="btn btn-danger">Not attending</button>
 		</section>
 	</section>
 </template>
@@ -23,8 +24,8 @@
 		props: ['lecture'],
 		data: function () {
 			return {
-				isAttending: false,
-				notAttending: null,
+				isAttending: true,
+				notAttending: true,
 				message: 'Attending',
 				isLoading: false,
 				isAtSchool: false
