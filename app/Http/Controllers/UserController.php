@@ -26,16 +26,18 @@ class UserController extends Controller
 		$this->currentTime = date("d-m-Y H:i:s");
 	}
 
-    public function notAttending(Request $request)
+    public function notAttending(Request $request, $lectureId)
     {
-    	$lectureId = $request->input('lectureId');
-    	$comment = $request->input('reason');
+    	$comment = $request->input('comment');
     	$reason = Reason::create(['comment' => $comment]);
     	$reasonId = $reason->id;
 
     	$id = Auth::id();
     	$user = User::find($id)->lectures()->attach($lectureId, ['reason_id' => $reasonId]);
-    	return back();
+
+        return response()->json([
+                'message' => 'Excused'
+            ]);
 
     }
 

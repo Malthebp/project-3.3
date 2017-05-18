@@ -20,7 +20,7 @@
 @if(!Auth::guest())
 <header>
     <h1>(name on app)</h1>
-    <p>456<i class="fa fa-diamond" aria-hidden="true"></i></p>
+    <p>456 <i class="fa fa-diamond" aria-hidden="true"></i></p>
 </header>
 @endif
         @yield('content')

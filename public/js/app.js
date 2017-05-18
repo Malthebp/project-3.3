@@ -17350,6 +17350,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['lecture'],
@@ -17359,7 +17382,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			notAttending: true,
 			message: 'Attending',
 			isLoading: false,
-			isAtSchool: false
+			isAtSchool: false,
+			comment: null,
+			isActive: false,
+			messageNotAttend: 'Submit'
 		};
 	},
 	methods: {
@@ -17377,24 +17403,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.message = response.data.message;
 			});
 		},
-		checkForAttendance: function checkForAttendance() {
+		notAttend: function notAttend(lectureId) {
 			var _this2 = this;
 
 			this.isLoading = true;
-			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
+			axios.post('/lecture/notattending/' + lectureId, { comment: this.comment }).then(function (response) {
+				_this2.isAttending = false;
 				_this2.isLoading = false;
-				_this2.isAttending = response.data.attending;
+				_this2.messageNotAttend = response.data.message;
+				_this2.isActive = false;
+				_this2.checkForAttendance();
+				console.log(response.data.message);
+			}, function (response) {
+				_this2.isLoading = false;
+				_this2.messageNotAttend = response.data.message;
+			});
+		},
+
+		checkForAttendance: function checkForAttendance() {
+			var _this3 = this;
+
+			this.isLoading = true;
+			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
+				_this3.isLoading = false;
+				_this3.isAttending = response.data.attending;
 				console.log(response.data.attending);
 			});
 		},
 		isAtSchoolFunc: function isAtSchoolFunc() {
-			var _this3 = this;
+			var _this4 = this;
 
 			axios.get('/user/isatschool/' + this.lecture.id).then(function (response) {
-				_this3.isAtSchool = response.data.isAtSchool;
+				_this4.isAtSchool = response.data.isAtSchool;
 			});
+		},
+		showModal: function showModal() {
+			if (this.isActive) {
+				this.isActive = false;
+			} else {
+				this.isActive = true;
+			}
 		}
-
 	},
 	created: function created() {
 		this.checkForAttendance();
@@ -17412,7 +17461,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Lecture__);
-//
 //
 //
 //
@@ -47928,8 +47976,67 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Excused")]) : _vm._e(), _vm._v(" "), (_vm.isAttending == 'not attended') ? _c('button', {
     staticClass: "btn btn-danger"
   }, [_vm._v("Not attended")]) : _vm._e(), _vm._v(" "), (!_vm.isAtSchool && !_vm.isAttending) ? _c('section', [_c('button', {
-    staticClass: "btn btn-danger"
-  }, [_vm._v("Not attending")])]) : _vm._e()])
+    staticClass: "btn btn-danger",
+    on: {
+      "click": _vm.showModal
+    }
+  }, [_vm._v("Not attending")])]) : _vm._e(), _vm._v(" "), _c('section', {
+    class: [_vm.isActive ? 'modalActive' : '', 'modal']
+  }, [_c('div', {
+    staticClass: "modal__background",
+    on: {
+      "click": _vm.showModal
+    }
+  }), _vm._v(" "), _c('section', {
+    staticClass: "modal__content"
+  }, [_vm._m(2), _vm._v(" "), _c('article', {
+    staticClass: "modal__body"
+  }, [_c('form', {
+    staticClass: "form"
+  }, [_c('label', {
+    attrs: {
+      "for": "comment"
+    }
+  }, [_vm._v("Tell why you can't come")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.comment),
+      expression: "comment"
+    }],
+    attrs: {
+      "type": "text",
+      "name": ""
+    },
+    domProps: {
+      "value": (_vm.comment)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.comment = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('section', {
+    staticClass: "modal__footer"
+  }, [_c('button', {
+    staticClass: "btn btn-danger",
+    on: {
+      "click": function($event) {
+        _vm.notAttend(_vm.lecture.id)
+      }
+    }
+  }, [(!_vm.isLoading) ? _c('span', [_vm._v(_vm._s(_vm.messageNotAttend))]) : _vm._e(), _vm._v(" "), (_vm.isLoading) ? _c('span', [_c('i', {
+    staticClass: "fa fa-spinner fa-spin",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })]) : _vm._e()]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-success",
+    on: {
+      "click": _vm.showModal
+    }
+  }, [_vm._v("Cancel")])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('p', {
     staticClass: "start-time"
@@ -47943,6 +48050,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "aria-hidden": "true"
     }
   })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('section', {
+    staticClass: "modal__header"
+  }, [_c('h3', [_vm._v("Not attending")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
