@@ -11,7 +11,9 @@
 		<button @click="nextWeek">Next week</button>
 	</div>
 	<div class="col-md-6">
-		<lecture  v-for="lecture in lectures" v-bind:lecture="lecture"></lecture>
+		<lecture v-if="!isLoading"  v-for="lecture in lectures" v-bind:lecture="lecture"></lecture>
+		<span v-if="isLoading"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+</span>
 	</div>
 		
 	</section>
@@ -29,13 +31,13 @@ import lecture from './Lecture'
 				year: null,
 				month: null,
 				lectures: [],
-				message: null
+				message: null,
+				isLoading: false
 			}
 		},
 		methods: {
 			datesInWeek: function () {
 				//Start of the current week, the add() adds another week, which is specified by a variable. 
-
 				var startOfWeek = moment().startOf('week').add(this.chosenWeek,'weeks');
 				var endOfWeek = moment().endOf('week').add(this.chosenWeek,'weeks');
 
@@ -44,22 +46,33 @@ import lecture from './Lecture'
 
 				//Generate all the dates in the given week.
 				while (day <= endOfWeek) {
+					//Pushes the new date to the array. Format example: 14, Su
 				    this.days.push(moment(day).format('DD, dd'));
+				    
 				    day = day.clone().add(1, 'd');
+				    //Set the month to the year of the week.
 				    this.month = moment(day).format('MM');
+				    //Set the year to the year of the week.
 				    this.year = moment(day).format('YYYY');
 				}
 
 				console.log(this.days);
 			},
 			nextWeek: function(){
+				//make the chosenweek the next
 				this.chosenWeek++;
+				//Reset the array
 				this.days = [];
+				//Initialize a new calendar with the new week.
 				this.datesInWeek();
 			},
 			previousWeek: function () {
+
+				//Make the chosenweek the previous. 
 				this.chosenWeek--;
+				//Reset the array
 				this.days = [];
+				//Initialize a new calendar with the new week. 
 				this.datesInWeek();
 			},
 			getLecture: function(date){
@@ -68,15 +81,25 @@ import lecture from './Lecture'
 				//Create a date that contains the correct information about the picked date. Year, month, day. 
 				var date = this.year + '-' + this.month + '-' + date;
 
+				//Start loading icon
+				this.isLoading = true;
 				axios.get('/lecture/get/'+date).then(response => {
 					// console.log(response.data);
 					//Getting current picked days lectures. By AJAX
 					this.lectures = response.data.lecture;
+
+					//stop loading icon
+					this.isLoading = false;
 				});
 			}
 		},
 		created: function (){
+			//Initialize the calendar  
 			this.datesInWeek();
+
+			//When this component is created, get the current day and lectures. 
+			var today = moment().format('DD, dd');
+			this.getLecture(today);
 		}
 	}
 </script>	

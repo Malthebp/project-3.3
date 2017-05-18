@@ -21,8 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Schedule test
 Route::get('/schedule', 'ClassController@index');
-Route::post('/schedule/notattending', 'LectureController@notAttending');
-Route::post('/schedule/attending', 'LectureController@attending');
+Route::post('/schedule/notattending', 'UserController@notAttending');
+Route::get('/user/isatschool/{id}', 'UserController@isAtSchool');
+Route::post('/lecture/attend/{id}', 'UserController@attending');
+Route::get('/lecture/attendance/{id}', 'UserController@checkAttendance');
 Route::get('/lecture/get/{date}', 'LectureController@get');
 
 
