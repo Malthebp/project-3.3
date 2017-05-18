@@ -17335,6 +17335,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['lecture'],
@@ -17397,6 +17412,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Lecture__);
+//
 //
 //
 //
@@ -47881,9 +47897,13 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
     staticClass: "panel panel-default"
-  }, [_c('p', [_vm._v(_vm._s(_vm.lecture.description))]), _vm._v(" "), _c('ul', _vm._l((_vm.lecture.users), function(user) {
+  }, [_c('div', {
+    staticClass: "calendarcard-top"
+  }, [_c('div', [_c('ul', [_c('li', [_vm._v("Design")]), _vm._v(" "), _c('li', [_vm._v("s.31-R104")]), _vm._v(" "), _vm._l((_vm.lecture.users), function(user) {
     return _c('li', [_vm._v(_vm._s(user.name))])
-  })), _vm._v(" "), (_vm.isAtSchool) ? _c('section', [(!_vm.isAttending) ? _c('button', {
+  })], 2)]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', {
+    staticClass: "calendarcard-content"
+  }, [_c('p', [_vm._v(_vm._s(_vm.lecture.description))]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('p', [_vm._v("Design Streak")])]), _vm._v(" "), (_vm.isAtSchool) ? _c('section', [(!_vm.isAttending) ? _c('button', {
     staticClass: "btn btn-success",
     on: {
       "click": function($event) {
@@ -47906,14 +47926,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "disabled": ""
     }
   }, [_vm._v("Excused")]) : _vm._e(), _vm._v(" "), (_vm.isAttending == 'not attended') ? _c('button', {
-    staticClass: "btn btn-danger",
-    attrs: {
-      "disabled": ""
-    }
+    staticClass: "btn btn-danger"
   }, [_vm._v("Not attended")]) : _vm._e(), _vm._v(" "), (!_vm.isAtSchool && !_vm.isAttending) ? _c('section', [_c('button', {
     staticClass: "btn btn-danger"
   }, [_vm._v("Not attending")])]) : _vm._e()])
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('p', {
+    staticClass: "start-time"
+  }, [_vm._v("8"), _c('sup', [_vm._v("30")])]), _vm._v(" "), _c('p', {
+    staticClass: "end-time"
+  }, [_vm._v("- 14:00")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_vm._v("4 x "), _c('i', {
+    staticClass: "fa fa-bolt",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -47977,7 +48007,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "lecture": lecture
       }
     }) : _vm._e()
-  }), _vm._v(" "), (_vm.isLoading) ? _c('span', [_c('i', {
+  }), _vm._v(" "), (_vm.isLoading) ? _c('span', {
+    staticClass: "loader"
+  }, [_c('i', {
     staticClass: "fa fa-spinner fa-spin",
     attrs: {
       "aria-hidden": "true"
