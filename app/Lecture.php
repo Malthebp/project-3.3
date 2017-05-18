@@ -12,7 +12,7 @@ use App\Reason;
 
 class Lecture extends Model
 {
-    
+    private $test;
     public function users()
     {
     	return $this->belongsToMany(User::class);
