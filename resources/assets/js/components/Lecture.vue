@@ -1,10 +1,25 @@
 <template>
-	<section>
-	<div  class="panel panel-default">
+
+	<section class="panel panel-default">
+	<div class="calendarcard-top">
+	<div>
+		<ul>
+			<li>Design</li>
+			<li>s.31-R104</li>
+			<li v-for="user in lecture.users">{{user.name}}</li>
+		</ul>
+	</div>
+	<div>
+	<p class="start-time">8<sup>30</sup></p>
+	<p class="end-time">- 14:00</p>
+	</div>
+	</div>
+	<div class="calendarcard-content">
 	<p>{{lecture.description}}</p>
-	<ul>
-		<li v-for="user in lecture.users">{{user.name}}</li>
-	</ul>
+	<p>4 x <i class="fa fa-bolt" aria-hidden="true"></i>
+ </p>
+	<p>Design Streak</p>
+	</div>
 		<section v-if="isAtSchool">
 			<button v-if="!isAttending" @click="attend(lecture.id)" class="btn btn-success">
 			<span v-if="!isLoading">{{message}}</span>
@@ -13,7 +28,7 @@
 		</section>
 		<button disabled v-if="isAttending && isAttending != 'excused' && isAttending != 'not attended'" class="btn btn-success" >You attends</button>
 		<button class="btn btn-danger" disabled v-if="isAttending == 'excused'">Excused</button>
-		<button class="btn btn-danger" disabled v-if="isAttending == 'not attended'">Not attended</button>
+		<button class="btn btn-danger"  v-if="isAttending == 'not attended'">Not attended</button>
 		<section v-if="!isAtSchool && !isAttending">
 			<button class="btn btn-danger" @click="showModal">Not attending</button>
 		</section>
