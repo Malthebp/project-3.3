@@ -32,3 +32,7 @@ Route::get('/lecture/get/{date}', 'LectureController@get');
 Route::get('/profile/user', function () {
 	return view('profile.user');
 });
+
+Route::get('/profile/user', function () {
+	return view('profile.user');
+});

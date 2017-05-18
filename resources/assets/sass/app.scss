@@ -1,10 +1,299 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Muli);
 
 // Variables
-/*@import "variables";*/
+
+@import "variables";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+
+// background image and font-family
+body {
+	font-family: 'Muli', sans-serif;
+	background-image: url(images/background.jpg);
+	background-size: cover;
+    background-repeat: no-repeat;
+}
+
+// header styling 
+
+header {
+	color: $light;
+	width: 100%;
+	padding: 5px;
+	display: flex;
+    justify-content: space-between;
+	
+	h1 {
+		font-size: 1.3em;
+		margin: 0;
+	}
+
+	p {
+		font-size: 1.3em;
+		margin:0;
+	}
+
+}
+
+//bottom navigation, potisioning and styling
+
+#bottom-nav {
+	color: $light;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+	ul{
+		padding: 0;
+		width: 100%;
+
+		li{
+			display: inline-table;
+			font-size: 2.5em;
+			width: (100%/4);
+			text-align: center;
+
+			a {
+				color: $light;
+				width: 100%;
+				display: block;
+			}	
+		}
+
+		li:nth-child(1n+2) {
+			border-left: solid 0.5px $light;
+		}
+
+	}
+
+}
+
+//styling for active in navigation 
+
+.active {
+	color: $brand-secondary;
+}
+
+
+
+//user
+
+#userinfo {
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	#userimage {
+		width: 100px;
+		height: 100px;
+		border-radius: 75px;
+		-webkit-border-radius: 75px;
+		-moz-border-radius: 75px;
+		margin-right: auto;
+		margin-left: auto;
+		display: block;
+	}
+
+	h2 {
+		text-align: center;
+		font-size: 1.5em;
+		color: $light;
+		margin: 15px 0px;
+	}
+}
+
+#user-nav {
+	color: $light;
+	width: 100%;
+
+	ul{
+		padding: 0;
+		width: 100%;
+
+		li{
+			display: inline-table;
+			font-size: 1.5em;
+			width:(100%/3);
+			text-align: center;
+			
+
+			a {
+				color: $light;
+				background-color: $brand-color-dark;
+				width: 100%;
+				display: block;	
+			}
+
+			.active-button {
+				background-color: $brand-secondary;
+				}	
+		}
+
+	}
+}
+
+
+// history
+
+#history {
+	article {
+		display: block;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: $light;
+		padding: 3px;
+		margin-bottom: 10px;
+
+		div{
+			display: flex;
+			justify-content: space-between;
+
+			h5 {
+				color: $dark;
+				margin: 0;
+				padding: 0;
+				font-size: 1.3em;
+			}
+
+			h6 {
+				color: $brand-color-dark;
+				margin: 0;
+				padding: 0;
+			}
+
+			.balance {
+				color: $brand-secondary;
+				margin: 0;
+				padding: 0;
+				font-size: 1.3em;
+			}
+
+			.sum {
+				color:dark;
+				margin: 0;
+				padding: 0;
+			}
+		}
+	}
+
+}
+
+//stats 
+
+#stats {
+
+	#top-stats {
+		display: inline-block;
+		text-align: right;
+		width: 95%;
+		margin-right: auto;
+		margin-left: auto;
+
+		p {
+			display: inline;
+			padding-bottom: 0;
+			font-size: 1.2em;
+		}
+
+	}
+
+	p:nth-child(1){
+		border-right: solid 1px $dark;
+		color: $brand-secondary;
+		padding-right: 5px;
+	}
+
+	p:nth-child(2){
+		color: $dark;
+		padding-left: 5px;
+	}
+
+	article {
+		display: flex;
+		justify-content:space-between;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: $light;
+		padding: 3px;
+		margin-bottom: 10px;
+
+		div{
+			display: inline-block;
+			color: $brand-secondary;
+			border-right: solid 1px $dark;
+			font-size: 2em;
+			width: 15%;
+			text-align: center;
+
+		}
+
+		h5{
+			display: inline-block;
+			color: $dark;
+			font-size: 1.3em;
+			margin: 0;
+			padding-top: 10px;
+		}
+
+		.current {
+			display: inline-block;
+			color: $brand-secondary;
+			font-size: 1.5em;
+			border-right: solid 1px $dark;
+			margin: 0;
+			padding-right: 8px;
+		}
+
+		.max {
+			display: inline-block;
+			color: $dark;
+			font-size: 1.5em;
+			margin: 0;
+		}
+	}
+
+}
+
+//bagdes
+
+#bagdes {
+
+	article {
+			display: block;
+			justify-content:space-between;
+			width: 95%;
+			margin-left: auto;
+			margin-right: auto;
+			background-color: $light;
+			padding: 3px;
+			margin-bottom: 10px;
+
+			div{
+				display: inline-block;
+				color: $brand-secondary;
+				border-right: solid 1px $brand-secondary;
+				font-size: 2em;
+				width: 15%;
+				text-align: center;
+
+			}
+
+			.inactive-bagde{
+				color: $dark;
+				border-right: solid 1px $dark;
+			}
+
+			h5{
+				display: inline-block;
+				color: $dark;
+				font-size: 1em;
+				margin: 0;
+				padding-top: 8px;
+			}
+		}
+}
