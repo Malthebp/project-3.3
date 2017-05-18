@@ -22,7 +22,7 @@ class UserController extends Controller
 	{
 		$this->studentIp = "195.254.169.71";
 		$this->teacherIp = "195.254.169.71";
-		$this->staticTime = mktime(8, 30, 00, 5, 17, 2017);
+		$this->staticTime = mktime(8, 30, 00, 5, 18, 2017);
 		$this->currentTime = date("d-m-Y H:i:s");
 	}
 
@@ -69,10 +69,13 @@ class UserController extends Controller
                 if($x->reason_id == 0)
                 {
                     return response()->json(['attending' => true]);
+                } elseif ($x->reason_id == 1) {
+                    return response()->json(['attending' => 'not attended']);
                 } else {
-                    return response()->json(['attending' => 'not attending']);
+                    return response()->json(['attending' => 'excused']);
                 }
             }
+
         }
         return response()->json(['attending' => false]);
     }

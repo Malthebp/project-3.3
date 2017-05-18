@@ -17334,13 +17334,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['lecture'],
 	data: function data() {
 		return {
-			isAttending: false,
-			notAttending: null,
+			isAttending: true,
+			notAttending: true,
 			message: 'Attending',
 			isLoading: false,
 			isAtSchool: false
@@ -47890,19 +47891,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "aria-hidden": "true"
     }
-  })]) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.isAttending == true) ? _c('button', {
+  })]) : _vm._e()]) : _vm._e()]) : _vm._e(), _vm._v(" "), (_vm.isAttending && _vm.isAttending != 'excused' && _vm.isAttending != 'not attended') ? _c('button', {
     staticClass: "btn btn-success",
     attrs: {
       "disabled": ""
     }
-  }, [_vm._v("You attends")]) : _vm._e(), _vm._v(" "), (_vm.isAttending == 'not attending') ? _c('button', {
+  }, [_vm._v("You attends")]) : _vm._e(), _vm._v(" "), (_vm.isAttending == 'excused') ? _c('button', {
     staticClass: "btn btn-danger",
     attrs: {
       "disabled": ""
     }
-  }, [_vm._v("Not Attending")]) : _vm._e()]) : _c('section', [(!_vm.isAtSchool) ? _c('button', {
+  }, [_vm._v("Excused")]) : _vm._e(), _vm._v(" "), (_vm.isAttending == 'not attended') ? _c('button', {
+    staticClass: "btn btn-danger",
+    attrs: {
+      "disabled": ""
+    }
+  }, [_vm._v("Not attended")]) : _vm._e(), _vm._v(" "), (!_vm.isAtSchool && !_vm.isAttending) ? _c('section', [_c('button', {
     staticClass: "btn btn-danger"
-  }, [_vm._v("Not attending")]) : _vm._e()])])
+  }, [_vm._v("Not attending")])]) : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -47944,6 +47950,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-md-6"
   }, [_vm._l((_vm.lectures), function(lecture) {
     return (!_vm.isLoading) ? _c('lecture', {
+      key: lecture.id,
       attrs: {
         "lecture": lecture
       }

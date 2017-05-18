@@ -11,7 +11,7 @@
 		<button @click="nextWeek">Next week</button>
 	</div>
 	<div class="col-md-6">
-		<lecture v-if="!isLoading"  v-for="lecture in lectures" v-bind:lecture="lecture"></lecture>
+		<lecture v-if="!isLoading"  v-for="lecture in lectures" v-bind:lecture="lecture" :key="lecture.id"></lecture>
 		<span v-if="isLoading"><i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
 </span>
 	</div>
