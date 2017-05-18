@@ -4,73 +4,51 @@
 
 <section class="card">
     <section class="content">
-        <div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="close"><a href="/"><i class="fa fa-times" aria-hidden="true"></i></a></div>
         <div class="lecture-info">
-        <img src="../images/userimage.jpg">
+        @foreach($lecture->users as $teacher)
+        <img src="{{$teacher->image}}">
+        @endforeach
         <ul id="info">
-            <li>Design</li>
-            <li>s.31-R104</li>
-            <li>Gertie</li>
+            <li>{{$lecture->subject}}</li>
+            <li>{{$lecture->location}}</li>
+            <li>@foreach($lecture->users as $teacher){{$teacher->name}}@endforeach</li>
         </ul>
         <ul id="date">
-        <li>17. Maj</li>
-        <li>8:30-14:00</li>
+        <li>{{date('d. M', strtotime($lecture->start))}}</li>
+        <li>{{date('H:i', strtotime($lecture->start))}} - {{date('H:i', strtotime($lecture->end))}}</li>
         </ul>
         </div>
 
-    <p>Theme: UI, UX and cinemagrphics</p>
+    <p>{{$lecture->description}}</p>
 </section>
 
      <nav>
-        <ul>
-            <li><a class="active-button">Students</a></li><li><a>Groups</a></li>
+        <ul class="tabs">
+            <li><a href="#students" class="active-button tab active">Students</a></li><li class="tab"><a href="#groups" >Groups</a></li>
         </ul>
     </nav>
 </section>
 
-<!-- students tab content
-
-    <article class="student">
+<!-- students tab content-->
+<section id="students" class="dont_show">
+@foreach($students as $student)
+    <article class="student student--notAttend">
         <section>
-        <img src="../images/userimage.jpg">
-        <p>John Doe</p>
+        <img src="{{$student->image}}">
+        <p>{{ucfirst($student->name)}}</p>
         </section>
-
-        <label class="switch">
-          <input type="checkbox">
+{{--         <label class="switch">
+          <input type="checkbox" >
           <div class="slider round"></div>
-        </label>
+        </label> --}}
     </article>
-
-     <article class="student">
-        <section>
-        <img src="../images/userimage.jpg">
-        <p>John Doe</p>
-        </section>
-
-        <label class="switch">
-          <input type="checkbox">
-          <div class="slider round"></div>
-        </label>
-    </article>
-
- <article class="student">
-        <section>
-        <img src="../images/userimage.jpg">
-        <p>John Doe</p>
-        </section>
-
-        <label class="switch">
-          <input type="checkbox">
-          <div class="slider round"></div>
-        </label>
-    </article>
-
--->
+@endforeach
+</section>
 
 <!-- groups tab content -->
-
-
+{{-- 
+<section id="groups" class="dont_show">
 <section id="group-select">
     <p>Members pr. group</p>
     <select>
@@ -99,5 +77,5 @@
     </article>
 
 <p class="group-nr">Group 2</p>
-
+</section> --}}
 @endsection

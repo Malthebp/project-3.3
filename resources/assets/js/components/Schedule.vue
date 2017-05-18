@@ -2,15 +2,15 @@
 	<section class="row">
 	<div class="col-md-6">
 	<button class="schedule-button" @click="previousWeek"><i class="fa fa-arrow-left" aria-hidden="true"></i>
-</button>
+	</button>
 		<nav id="schedule">
 		<p>{{month}}</p>
 			<ul>
-				<li v-for="day in days" ><a href="#" @click="getLecture(day)">{{day.name}} <span class="date">{{day.day}}</span></a></li>
+				<li v-for="day in days" ><a href="#" @click="handler(getLecture(day))" >{{day.name}} <span class="date">{{day.day}}</span></a></li>
 			</ul>
 		</nav>
 		<button class="schedule-button" @click="nextWeek"><i class="fa fa-arrow-right" aria-hidden="true"></i>
-</button>
+		</button>
 	</div>
 	<div class="col-md-6">
 		<lecture v-if="!isLoading"  v-for="lecture in lectures" v-bind:lecture="lecture" :key="lecture.id"></lecture>
@@ -19,6 +19,7 @@
 	</div>
 		
 	</section>
+
 </template>
 
 <script>
@@ -34,10 +35,13 @@ import lecture from './Lecture'
 				month: null,
 				lectures: [],
 				message: null,
-				isLoading: false
+				isLoading: false,
 			}
 		},
 		methods: {
+			handler(handle1, handle2){
+				this.getLecture(handle1);
+			},
 			datesInWeek: function () {
 				//Start of the current week, the add() adds another week, which is specified by a variable. 
 				var startOfWeek = moment().startOf('week').add(this.chosenWeek,'weeks');
@@ -58,7 +62,7 @@ import lecture from './Lecture'
 				    this.year = moment(day).format('YYYY');
 				}
 
-				console.log(this.days);
+				// console.log(this.days);
 			},
 			nextWeek: function(){
 				//make the chosenweek the next
@@ -80,8 +84,7 @@ import lecture from './Lecture'
 			getLecture: function(date){
 				//Remove the written date (example: , we).
 				//var date = date.substring(0, date.indexOf(','));
-				var date = date.day
-
+				var date = date.day;
 				//Create a date that contains the correct information about the picked date. Year, month, day. 
 				var date = this.year + '-' + this.month + '-' + date;
 
@@ -91,7 +94,6 @@ import lecture from './Lecture'
 					// console.log(response.data);
 					//Getting current picked days lectures. By AJAX
 					this.lectures = response.data.lecture;
-
 					//stop loading icon
 					this.isLoading = false;
 				});
@@ -102,7 +104,7 @@ import lecture from './Lecture'
 			this.datesInWeek();
 
 			//When this component is created, get the current day and lectures. 
-			var today = moment().format('DD, dd');
+			var today = {day: moment().format('DD')};
 			this.getLecture(today);
 		}
 	}

@@ -4,13 +4,13 @@
 	<div class="calendarcard-top">
 	<div>
 		<ul>
-			<li>Design</li>
-			<li>s.31-R104</li>
+			<li><a :href="'lecture/' + lecture.id">{{lecture.subject}}</a></li>
+			<li><a :href="'lecture/' + lecture.id">{{lecture.location}}</a></li>
 			<li v-for="user in lecture.users">{{user.name}}</li>
 		</ul>
 	</div>
 	<div>
-	<p class="start-time">8<sup>30</sup></p>
+	<p class="start-time"><a :href="'lecture/' + lecture.id">8<sup>30</sup></a></p>
 	<p class="end-time">- 14:00</p>
 	</div>
 	</div>
@@ -20,6 +20,7 @@
  </p>
 	<p>Design Streak</p>
 	</div>
+	<section class="attendance">
 		<section v-if="isAtSchool">
 			<button v-if="!isAttending" @click="attend(lecture.id)" class="btn btn-success">
 			<span v-if="!isLoading">{{message}}</span>
@@ -32,6 +33,9 @@
 		<section v-if="!isAtSchool && !isAttending">
 			<button class="btn btn-danger" @click="showModal">Not attending</button>
 		</section>
+	</section>
+		<a :href="'lecture/' + lecture.id" class="btn btn-success checkLecture"><i aria-hidden="true" class="fa fa-arrow-right"></i></a>
+
 	</div>
 		<section v-bind:class="[isActive ? 'modalActive' : '', 'modal']">
 				<div class="modal__background" @click="showModal"></div>
@@ -79,7 +83,7 @@
 					this.isAttending = true;
 					this.isLoading = false;
 					this.message = response.data.message;
-					console.log(response.data.message);
+					// console.log(response.data.message);
 				}, response => {
 					this.isLoading = false;
 					this.message = response.data.message;
@@ -93,7 +97,7 @@
 					this.messageNotAttend = response.data.message;
 					this.isActive = false;
 					this.checkForAttendance();
-					console.log(response.data.message);
+					// console.log(response.data.message);
 				}, response => {
 					this.isLoading = false;
 					this.messageNotAttend = response.data.message;
@@ -104,7 +108,7 @@
 				axios.get('/lecture/attendance/'+this.lecture.id).then(response => {
 					this.isLoading = false;
 					this.isAttending = response.data.attending;
-					console.log(response.data.attending);
+					// console.log(response.data.attending);
 				});
 			},
 			isAtSchoolFunc: function () {

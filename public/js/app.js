@@ -17373,6 +17373,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['lecture'],
@@ -17397,7 +17401,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.isAttending = true;
 				_this.isLoading = false;
 				_this.message = response.data.message;
-				console.log(response.data.message);
+				// console.log(response.data.message);
 			}, function (response) {
 				_this.isLoading = false;
 				_this.message = response.data.message;
@@ -17413,7 +17417,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this2.messageNotAttend = response.data.message;
 				_this2.isActive = false;
 				_this2.checkForAttendance();
-				console.log(response.data.message);
+				// console.log(response.data.message);
 			}, function (response) {
 				_this2.isLoading = false;
 				_this2.messageNotAttend = response.data.message;
@@ -17427,7 +17431,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
 				_this3.isLoading = false;
 				_this3.isAttending = response.data.attending;
-				console.log(response.data.attending);
+				// console.log(response.data.attending);
 			});
 		},
 		isAtSchoolFunc: function isAtSchoolFunc() {
@@ -17484,6 +17488,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -17501,6 +17506,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	methods: {
+		handler: function handler(handle1, handle2) {
+			this.getLecture(handle1);
+		},
+
 		datesInWeek: function datesInWeek() {
 			//Start of the current week, the add() adds another week, which is specified by a variable. 
 			var startOfWeek = __WEBPACK_IMPORTED_MODULE_0_moment___default()().startOf('week').add(this.chosenWeek, 'weeks');
@@ -17521,7 +17530,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.year = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('YYYY');
 			}
 
-			console.log(this.days);
+			// console.log(this.days);
 		},
 		nextWeek: function nextWeek() {
 			//make the chosenweek the next
@@ -17546,7 +17555,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			//Remove the written date (example: , we).
 			//var date = date.substring(0, date.indexOf(','));
 			var date = date.day;
-
 			//Create a date that contains the correct information about the picked date. Year, month, day. 
 			var date = this.year + '-' + this.month + '-' + date;
 
@@ -17556,7 +17564,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				// console.log(response.data);
 				//Getting current picked days lectures. By AJAX
 				_this.lectures = response.data.lecture;
-
 				//stop loading icon
 				_this.isLoading = false;
 			});
@@ -17567,7 +17574,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.datesInWeek();
 
 		//When this component is created, get the current day and lectures. 
-		var today = __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('DD, dd');
+		var today = { day: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('DD') };
 		this.getLecture(today);
 	}
 });
@@ -47815,13 +47822,13 @@ var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(146),
   /* template */
-  __webpack_require__(158),
+  __webpack_require__(159),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47832,9 +47839,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-42b8c1ee", Component.options)
+    hotAPI.createRecord("data-v-5f0b6cce", Component.options)
   } else {
-    hotAPI.reload("data-v-42b8c1ee", Component.options)
+    hotAPI.reload("data-v-5f0b6cce", Component.options)
   }
 })()}
 
@@ -47849,13 +47856,13 @@ var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(147),
   /* template */
-  __webpack_require__(159),
+  __webpack_require__(158),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
+Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Lecture.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Lecture.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47866,9 +47873,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-45f39402", Component.options)
+    hotAPI.createRecord("data-v-5895c8a6", Component.options)
   } else {
-    hotAPI.reload("data-v-45f39402", Component.options)
+    hotAPI.reload("data-v-5895c8a6", Component.options)
   }
 })()}
 
@@ -47889,7 +47896,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
+Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Schedule.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Schedule.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47900,9 +47907,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6194bc43", Component.options)
+    hotAPI.createRecord("data-v-e7f7ac10", Component.options)
   } else {
-    hotAPI.reload("data-v-6194bc43", Component.options)
+    hotAPI.reload("data-v-e7f7ac10", Component.options)
   }
 })()}
 
@@ -47914,44 +47921,33 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-42b8c1ee", module.exports)
-  }
-}
-
-/***/ }),
-/* 159 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('section', {
     staticClass: "panel panel-default"
   }, [_c('div', {
     staticClass: "calendarcard-top"
-  }, [_c('div', [_c('ul', [_c('li', [_vm._v("Design")]), _vm._v(" "), _c('li', [_vm._v("s.31-R104")]), _vm._v(" "), _vm._l((_vm.lecture.users), function(user) {
+  }, [_c('div', [_c('ul', [_c('li', [_c('a', {
+    attrs: {
+      "href": 'lecture/' + _vm.lecture.id
+    }
+  }, [_vm._v(_vm._s(_vm.lecture.subject))])]), _vm._v(" "), _c('li', [_c('a', {
+    attrs: {
+      "href": 'lecture/' + _vm.lecture.id
+    }
+  }, [_vm._v(_vm._s(_vm.lecture.location))])]), _vm._v(" "), _vm._l((_vm.lecture.users), function(user) {
     return _c('li', [_vm._v(_vm._s(user.name))])
-  })], 2)]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', {
+  })], 2)]), _vm._v(" "), _c('div', [_c('p', {
+    staticClass: "start-time"
+  }, [_c('a', {
+    attrs: {
+      "href": 'lecture/' + _vm.lecture.id
+    }
+  }, [_vm._v("8"), _c('sup', [_vm._v("30")])])]), _vm._v(" "), _c('p', {
+    staticClass: "end-time"
+  }, [_vm._v("- 14:00")])])]), _vm._v(" "), _c('div', {
     staticClass: "calendarcard-content"
-  }, [_c('p', [_vm._v(_vm._s(_vm.lecture.description))]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('p', [_vm._v("Design Streak")])]), _vm._v(" "), (_vm.isAtSchool) ? _c('section', [(!_vm.isAttending) ? _c('button', {
+  }, [_c('p', [_vm._v(_vm._s(_vm.lecture.description))]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('p', [_vm._v("Design Streak")])]), _vm._v(" "), _c('section', {
+    staticClass: "attendance"
+  }, [(_vm.isAtSchool) ? _c('section', [(!_vm.isAttending) ? _c('button', {
     staticClass: "btn btn-success",
     on: {
       "click": function($event) {
@@ -47980,7 +47976,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.showModal
     }
-  }, [_vm._v("Not attending")])]) : _vm._e(), _vm._v(" "), _c('section', {
+  }, [_vm._v("Not attending")])]) : _vm._e()]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-success checkLecture",
+    attrs: {
+      "href": 'lecture/' + _vm.lecture.id
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-arrow-right",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })]), _vm._v(" "), _c('section', {
     class: [_vm.isActive ? 'modalActive' : '', 'modal']
   }, [_c('div', {
     staticClass: "modal__background",
@@ -47989,7 +47995,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('section', {
     staticClass: "modal__content"
-  }, [_vm._m(2), _vm._v(" "), _c('article', {
+  }, [_vm._m(1), _vm._v(" "), _c('article', {
     staticClass: "modal__body"
   }, [_c('form', {
     staticClass: "form"
@@ -48038,12 +48044,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Cancel")])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('p', {
-    staticClass: "start-time"
-  }, [_vm._v("8"), _c('sup', [_vm._v("30")])]), _vm._v(" "), _c('p', {
-    staticClass: "end-time"
-  }, [_vm._v("- 14:00")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_vm._v("4 x "), _c('i', {
     staticClass: "fa fa-bolt",
     attrs: {
@@ -48059,7 +48059,36 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-45f39402", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-5895c8a6", module.exports)
+  }
+}
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5f0b6cce", module.exports)
   }
 }
 
@@ -48093,7 +48122,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          _vm.getLecture(day)
+          _vm.handler(_vm.getLecture(day))
         }
       }
     }, [_vm._v(_vm._s(day.name) + " "), _c('span', {
@@ -48131,7 +48160,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6194bc43", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-e7f7ac10", module.exports)
   }
 }
 

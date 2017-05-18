@@ -11,32 +11,34 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+	//Schedule
+	Route::get('/', 'ClassController@index'); //Get view for calendar
+	Route::post('/lecture/notattending/{id}', 'UserController@notAttending'); //Used for AJAX requests
+	Route::get('/user/isatschool/{id}', 'UserController@isAtSchool');//Used for AJAX requests
+	Route::post('/lecture/attend/{id}', 'UserController@attending');//Used for AJAX requests
+	Route::get('/lecture/attendance/{id}', 'UserController@checkAttendance');//Used for AJAX requests
+	Route::get('/lecture/get/{date}', 'LectureController@get');//Used for AJAX requests
+	Route::get('/lecture/{id}', 'LectureController@getLectureView'); //This acutally returns a view ;-) 
 
-//Schedule test
-Route::get('/schedule', 'ClassController@index');
-Route::post('/lecture/notattending/{id}', 'UserController@notAttending');
-Route::get('/user/isatschool/{id}', 'UserController@isAtSchool');
-Route::post('/lecture/attend/{id}', 'UserController@attending');
-Route::get('/lecture/attendance/{id}', 'UserController@checkAttendance');
-Route::get('/lecture/get/{date}', 'LectureController@get');
+	//TESTER
+	Route::get('/profile/user', function () {
+		return view('profile.user');
+	});
 
+	Route::get('/profile/user', function () {
+		return view('profile.user');
+	});
 
-//TESTER
-Route::get('/profile/user', function () {
-	return view('profile.user');
-});
+	Route::get('/logout', function () {
+		Auth::logout();
+	});
 
-Route::get('/profile/user', function () {
-	return view('profile.user');
-});
-
-Route::get('/lecture', function () {
-	return view('schedule.lecture');
 });
