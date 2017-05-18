@@ -36,3 +36,7 @@ Route::get('/profile/user', function () {
 Route::get('/profile/user', function () {
 	return view('profile.user');
 });
+
+Route::get('/lecture', function () {
+	return view('schedule.lecture');
+});

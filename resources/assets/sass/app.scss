@@ -492,3 +492,255 @@ header {
 	font-size: 4em;
 	display: block;
 }
+
+//Lecture information
+
+.card{
+	background-color: $light;
+	width: 95%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
+	.content {
+	padding: 10px;
+
+		.close {
+			width: 100%;
+			display: block;
+			text-align: right;
+			color: $brand-secondary;
+			font-size: 1.5em;
+			margin-right: 10px;
+		}
+
+		.lecture-info{
+			display: flex;
+			justify-content:space-between;
+			margin-bottom: 15px;
+
+			img {
+				width: 80px;
+				height: 80px;
+				border-radius: 40px;
+				-webkit-border-radius: 40px;
+				-moz-border-radius: 40px;
+				display: inline-block;
+				border: solid 1px $dark;
+			}
+
+			#info {
+				display: inline-block;
+
+				li:nth-child(1){
+					list-style: none;
+					color: $dark;
+					font-size: 1.3em;
+				}
+
+				li:nth-child(1n+2){
+					list-style: none;
+					color: $brand-color-dark;
+					font-size: 1em;
+				}
+			}
+
+			#date {
+				display: inline-block;
+				text-align: right;
+
+				li:nth-child(1){
+					list-style: none;
+					color: $brand-color-dark;
+					font-size: 1.8em;
+					font-weight: bolder;
+				}
+
+				li:nth-child(2){
+					list-style: none;
+					color: $brand-color;
+					font-size: 1em;
+				}
+			}
+		}
+
+		p{
+			text-align: center;
+			color: $brand-secondary;
+			font-style: italic;
+			font-size: 0.8em;
+		}
+	}
+
+	nav{
+		color: $light;
+		width: 100%;
+
+		ul{
+			padding: 0;
+			width: 100%;
+
+			li{
+				display: inline-table;
+				font-size: 1.5em;
+				width:(100%/2);
+				text-align: center;
+				
+
+				a {
+					color: $light;
+					background-color: $brand-color-dark;
+					width: 100%;
+					display: block;	
+				}
+
+				.active-button {
+					background-color: $brand-secondary;
+					}	
+			}
+
+		}
+
+	}
+
+}
+
+.student{
+		display: flex;
+	    width: 95%;
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-top: 5px;
+		background-color: $brand-color;
+		justify-content:space-between;
+
+		section{
+			display: flex;
+			justify-content:flex-start;
+
+			img {
+				width: 40px;
+				height: 40px;
+				border-radius: 20px;
+				-webkit-border-radius: 20px;
+				-moz-border-radius: 20px;
+				display: inline-block;
+				margin: 5px;
+			}
+
+			p{
+				display: inline-block;
+				color: $dark;
+				font-size: 1em;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+		}
+
+		/* The switch - the box around the slider */
+		.switch {
+		  	position: relative;
+		  	display: inline-block;
+		  	width: 60px;
+		  	height: 34px;
+		  	margin-bottom: auto;
+		  	margin-top: auto;
+		  	margin-right: 5px;
+		}
+
+		/* Hide default HTML checkbox */
+		.switch input {display:none;}
+
+		/* The slider */
+		.slider {
+		  position: absolute;
+		  cursor: pointer;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  background-color: $light;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		    border: solid 1px $brand-color;
+		}
+
+		.slider:before {
+		  position: absolute;
+		  content: "";
+		  height: 26px;
+		  width: 26px;
+		  left: 4px;
+		  bottom: 4px;
+		  background-color: $brand-color;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+
+		input:checked + .slider {
+		  background-color: $brand-color-dark;
+		}
+
+		input:checked + .slider:before {
+		  -webkit-transform: translateX(26px);
+		  -ms-transform: translateX(26px);
+		  transform: translateX(26px);
+		}
+
+		/* Rounded sliders */
+		.slider.round {
+		  border-radius: 34px;
+		}
+
+		.slider.round:before {
+		  border-radius: 50%;
+		}
+}
+
+// group selector
+
+#group-select{
+	width: 95%;
+	display: flex;
+	justify-content:space-between;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+
+	p {
+		color: $light;
+		font-size: 1.3em;
+	}
+
+	select{
+		background-color: $light;
+		color:  $brand-color-dark;
+		border: 0;
+		padding: 10px;
+	}
+
+	button {
+		border: 0;
+		background-color: $brand-secondary;
+		color: $light;
+		padding: 10px;
+	}
+}
+
+.group-nr {
+	width: 95%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	color: $light;
+	font-size: 1.3em;
+	font-weight: bolder;
+	margin-top: 20px;
+}
+
+
+
+	
+
+
+
