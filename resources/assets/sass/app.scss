@@ -297,3 +297,76 @@ header {
 			}
 		}
 }
+
+// schedule
+
+
+.col-md-6{
+	padding: 0;
+	width: 95%;
+	display:flex;
+	margin-right: auto;
+	margin-left: auto;
+	justify-content:space-between;
+}
+
+#schedule{
+	width: 80%;
+	text-align: center;
+	margin: 0;
+	display: inline-block;
+
+	p{
+		color: $light;
+		font-size: 1.5em;
+		margin: 0;
+	}
+
+	ul{
+		padding: 0;
+		display: flex;
+		justify-content: space-between;
+
+		li{
+			display: inline-table;
+			font-size: 1.3em;
+			width: (80%/7);
+			text-align: center;
+
+			a {
+				color: $light;
+
+				.date{
+					color: $brand-color;
+					font-size: 1em;
+				}
+			}
+
+			a:active {
+				text-decoration: none;
+				color: $brand-secondary;
+			}
+
+			a:hover {
+				text-decoration: none;
+				color: $brand-secondary;
+			}
+		}
+	}
+}
+
+.schedule-button {
+	display: inline;
+    background: none;
+    border: none;
+    color: $brand-color;
+    font-size: 1.3em;
+    width: 8%;
+
+} 
+
+.panel {
+	background-color: $light;
+	width: 100%;
+	border-style: none;
+}

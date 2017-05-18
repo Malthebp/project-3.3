@@ -1,14 +1,16 @@
 <template>
 	<section class="row">
 	<div class="col-md-6">
-		<nav>
-		{{month}}  {{year}}
+	<button class="schedule-button" @click="previousWeek"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+</button>
+		<nav id="schedule">
+		<p>{{month}}</p>
 			<ul>
-				<li v-for="day in days" ><a href="#" @click="getLecture(day)">{{day}}</a></li>
+				<li v-for="day in days" ><a href="#" @click="getLecture(day)">{{day.name}} <span class="date">{{day.day}}</span></a></li>
 			</ul>
 		</nav>
-		<button @click="previousWeek">Previous week</button>
-		<button @click="nextWeek">Next week</button>
+		<button class="schedule-button" @click="nextWeek"><i class="fa fa-arrow-right" aria-hidden="true"></i>
+</button>
 	</div>
 	<div class="col-md-6">
 		<lecture v-if="!isLoading"  v-for="lecture in lectures" v-bind:lecture="lecture"></lecture>
@@ -47,11 +49,11 @@ import lecture from './Lecture'
 				//Generate all the dates in the given week.
 				while (day <= endOfWeek) {
 					//Pushes the new date to the array. Format example: 14, Su
-				    this.days.push(moment(day).format('DD, dd'));
+				    this.days.push({day: moment(day).format('DD'), name: moment(day).format('dd')});
 				    
 				    day = day.clone().add(1, 'd');
 				    //Set the month to the year of the week.
-				    this.month = moment(day).format('MM');
+				    this.month = moment(day).format('MMM');
 				    //Set the year to the year of the week.
 				    this.year = moment(day).format('YYYY');
 				}
@@ -77,7 +79,9 @@ import lecture from './Lecture'
 			},
 			getLecture: function(date){
 				//Remove the written date (example: , we).
-				var date = date.substring(0, date.indexOf(','));
+				//var date = date.substring(0, date.indexOf(','));
+				var date = date.day
+
 				//Create a date that contains the correct information about the picked date. Year, month, day. 
 				var date = this.year + '-' + this.month + '-' + date;
 

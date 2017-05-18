@@ -17417,6 +17417,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -17445,11 +17447,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			//Generate all the dates in the given week.
 			while (day <= endOfWeek) {
 				//Pushes the new date to the array. Format example: 14, Su
-				this.days.push(__WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD, dd'));
+				this.days.push({ day: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD'), name: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('dd') });
 
 				day = day.clone().add(1, 'd');
 				//Set the month to the year of the week.
-				this.month = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('MM');
+				this.month = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('MMM');
 				//Set the year to the year of the week.
 				this.year = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('YYYY');
 			}
@@ -17477,7 +17479,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			//Remove the written date (example: , we).
-			var date = date.substring(0, date.indexOf(','));
+			//var date = date.substring(0, date.indexOf(','));
+			var date = date.day;
+
 			//Create a date that contains the correct information about the picked date. Year, month, day. 
 			var date = this.year + '-' + this.month + '-' + date;
 
@@ -47752,7 +47756,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47786,7 +47790,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Lecture.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47820,7 +47824,7 @@ var Component = __webpack_require__(3)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
+Component.options.__file = "C:\\xampp\\htdocs\\mdu\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Schedule.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47921,7 +47925,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-md-6"
-  }, [_c('nav', [_vm._v("\n\t\t" + _vm._s(_vm.month) + "  " + _vm._s(_vm.year) + "\n\t\t\t"), _c('ul', _vm._l((_vm.days), function(day) {
+  }, [_c('button', {
+    staticClass: "schedule-button",
+    on: {
+      "click": _vm.previousWeek
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-arrow-left",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })]), _vm._v(" "), _c('nav', {
+    attrs: {
+      "id": "schedule"
+    }
+  }, [_c('p', [_vm._v(_vm._s(_vm.month))]), _vm._v(" "), _c('ul', _vm._l((_vm.days), function(day) {
     return _c('li', [_c('a', {
       attrs: {
         "href": "#"
@@ -47931,16 +47949,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.getLecture(day)
         }
       }
-    }, [_vm._v(_vm._s(day))])])
+    }, [_vm._v(_vm._s(day.name) + " "), _c('span', {
+      staticClass: "date"
+    }, [_vm._v(_vm._s(day.day))])])])
   }))]), _vm._v(" "), _c('button', {
-    on: {
-      "click": _vm.previousWeek
-    }
-  }, [_vm._v("Previous week")]), _vm._v(" "), _c('button', {
+    staticClass: "schedule-button",
     on: {
       "click": _vm.nextWeek
     }
-  }, [_vm._v("Next week")])]), _vm._v(" "), _c('div', {
+  }, [_c('i', {
+    staticClass: "fa fa-arrow-right",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_vm._l((_vm.lectures), function(lecture) {
     return (!_vm.isLoading) ? _c('lecture', {
