@@ -1,9 +1,111 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Muli);
 
 // Variables
-//@import "variables";
+@import "variables";
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+// background image and font-family
+body {
+	font-family: 'Muli', sans-serif;
+	background-image: url(images/background.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+// header styling 
+
+header {
+	color: $light;
+	width: 100%;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+	
+	h1 {
+		font-size: 1.3em;
+		margin: 0;
+	}
+
+	p {
+		font-size: 1.3em;
+		margin:0;
+	}
+
+}
+
+//bottom navigation, potisioning and styling
+
+nav {
+	color: $light;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+	ul{
+		padding: 0;
+		width: 100%;
+
+		li{
+			display: inline-table;
+			font-size: 2.5em;
+			width: (100%/4);
+			text-align: center;
+
+			a {
+				color: $light;
+			}	
+		}
+
+		li:nth-child(1n+2) {
+			border-left: solid 0.5px $light;
+		}
+
+	}
+
+}
+
+//styling for active in navigation 
+
+.active {
+	color: $brand-secondary;
+}
+
+
+/* Pointshop */
+#pointshop {
+	.item_box{
+		padding: 5px 10px;
+	}
+
+	h1 {
+		color: #80b5c1;
+	}
+	.shop_item_image {
+		width: 45px;
+		float: left;
+    	margin: 7px 10px 7px 0px;
+	}
+	.shop_item_buy {
+		color: orange;
+		float: right;
+		border-left: 1px solid orange;
+		padding: 7px 0px 7px 10px;
+		font-size: 20px;
+	}
+	.shop_item_desc {
+		display: inline-block;
+		h4 {
+			line-height: 0.7;
+			color: #64656b;
+		}
+		p {
+			line-height: 0.9;
+			color: #80b5c1;
+		}
+	}
+}
