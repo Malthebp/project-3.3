@@ -25,7 +25,7 @@
 
      <nav>
         <ul class="tabs">
-            <li><a href="#students" class="active-button tab active">Students</a></li><li class="tab"><a href="#groups" >Groups</a></li>
+            <li class="tab"><a href="#students" class="  active">Students</a></li><li class="tab"><a href="#groups" >Groups</a></li>
         </ul>
     </nav>
 </section>
@@ -47,7 +47,6 @@
 </section>
 
 <!-- groups tab content -->
-{{-- 
 <section id="groups" class="dont_show">
 <section id="group-select">
     <p>Members pr. group</p>
@@ -77,5 +76,5 @@
     </article>
 
 <p class="group-nr">Group 2</p>
-</section> --}}
+</section>
 @endsection

@@ -13624,7 +13624,6 @@ jQuery.extend( {
 	lastModified: {},
 	etag: {},
 
-<<<<<<< HEAD
 	ajaxSettings: {
 		url: location.href,
 		type: "GET",
@@ -13669,192 +13668,15 @@ jQuery.extend( {
 		// Data converters
 		// Keys separate source (or catchall "*") and destination types with a single space
 		converters: {
-=======
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['lecture'],
-	data: function data() {
-		return {
-			isAttending: true,
-			notAttending: true,
-			message: 'Attending',
-			isLoading: false,
-			isAtSchool: false,
-			comment: null,
-			isActive: false,
-			messageNotAttend: 'Submit'
-		};
-	},
-	methods: {
-		attend: function attend(lectureId) {
-			var _this = this;
-
-			this.isLoading = true;
-			axios.post('/lecture/attend/' + lectureId).then(function (response) {
-				_this.isAttending = true;
-				_this.isLoading = false;
-				_this.message = response.data.message;
-				// console.log(response.data.message);
-			}, function (response) {
-				_this.isLoading = false;
-				_this.message = response.data.message;
-			});
-		},
-		notAttend: function notAttend(lectureId) {
-			var _this2 = this;
-
-			this.isLoading = true;
-			axios.post('/lecture/notattending/' + lectureId, { comment: this.comment }).then(function (response) {
-				_this2.isAttending = false;
-				_this2.isLoading = false;
-				_this2.messageNotAttend = response.data.message;
-				_this2.isActive = false;
-				_this2.checkForAttendance();
-				// console.log(response.data.message);
-			}, function (response) {
-				_this2.isLoading = false;
-				_this2.messageNotAttend = response.data.message;
-			});
-		},
-
-		checkForAttendance: function checkForAttendance() {
-			var _this3 = this;
-
-			this.isLoading = true;
-			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
-				_this3.isLoading = false;
-				_this3.isAttending = response.data.attending;
-				// console.log(response.data.attending);
-			});
-		},
-		isAtSchoolFunc: function isAtSchoolFunc() {
-			var _this4 = this;
-
-			axios.get('/user/isatschool/' + this.lecture.id).then(function (response) {
-				_this4.isAtSchool = response.data.isAtSchool;
-			});
-		},
-		showModal: function showModal() {
-			if (this.isActive) {
-				this.isActive = false;
-			} else {
-				this.isActive = true;
-			}
-		}
-	},
-	created: function created() {
-		this.checkForAttendance();
-		this.isAtSchoolFunc();
-	}
-});
->>>>>>> schedule
 
 			// Convert anything to text
 			"* text": String,
 
-<<<<<<< HEAD
 			// Text to html (true = no transformation)
 			"text html": true,
 
 			// Evaluate text as a json expression
 			"text json": JSON.parse,
-=======
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lecture___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Lecture__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
->>>>>>> schedule
 
 			// Parse text as xml
 			"text xml": jQuery.parseXML
@@ -13882,23 +13704,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			// Extending ajaxSettings
 			ajaxExtend( jQuery.ajaxSettings, target );
 	},
-<<<<<<< HEAD
-=======
-	methods: {
-		handler: function handler(handle1, handle2) {
-			this.getLecture(handle1);
-		},
-
-		datesInWeek: function datesInWeek() {
-			//Start of the current week, the add() adds another week, which is specified by a variable. 
-			var startOfWeek = __WEBPACK_IMPORTED_MODULE_0_moment___default()().startOf('week').add(this.chosenWeek, 'weeks');
-			var endOfWeek = __WEBPACK_IMPORTED_MODULE_0_moment___default()().endOf('week').add(this.chosenWeek, 'weeks');
->>>>>>> schedule
 
 	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
 	ajaxTransport: addToPrefiltersOrTransports( transports ),
 
-<<<<<<< HEAD
 	// Main method
 	ajax: function( url, options ) {
 
@@ -13910,35 +13719,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		// Force options to be an object
 		options = options || {};
-=======
-			//Generate all the dates in the given week.
-			while (day <= endOfWeek) {
-				//Pushes the new date to the array. Format example: 14, Su
-				this.days.push({ day: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD'), name: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('dd') });
-
-				day = day.clone().add(1, 'd');
-				//Set the month to the year of the week.
-				this.month = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('MMM');
-				//Set the year to the year of the week.
-				this.year = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('YYYY');
-			}
-
-			// console.log(this.days);
-		},
-		nextWeek: function nextWeek() {
-			//make the chosenweek the next
-			this.chosenWeek++;
-			//Reset the array
-			this.days = [];
-			//Initialize a new calendar with the new week.
-			this.datesInWeek();
-		},
-		previousWeek: function previousWeek() {
->>>>>>> schedule
 
 		var transport,
 
-<<<<<<< HEAD
 			// URL without anti-cache param
 			cacheURL,
 
@@ -13951,34 +13734,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			// Url cleanup var
 			urlAnchor,
-=======
-			//Remove the written date (example: , we).
-			//var date = date.substring(0, date.indexOf(','));
-			var date = date.day;
-			//Create a date that contains the correct information about the picked date. Year, month, day. 
-			var date = this.year + '-' + this.month + '-' + date;
-
-			//Start loading icon
-			this.isLoading = true;
-			axios.get('/lecture/get/' + date).then(function (response) {
-				// console.log(response.data);
-				//Getting current picked days lectures. By AJAX
-				_this.lectures = response.data.lecture;
-				//stop loading icon
-				_this.isLoading = false;
-			});
-		}
-	},
-	created: function created() {
-		//Initialize the calendar  
-		this.datesInWeek();
-
-		//When this component is created, get the current day and lectures. 
-		var today = { day: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('DD') };
-		this.getLecture(today);
-	}
-});
->>>>>>> schedule
 
 			// Request state (becomes false upon send and true upon completion)
 			completed,
@@ -27841,16 +27596,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['lecture'],
 	data: function data() {
 		return {
-			isAttending: false,
-			notAttending: null,
+			isAttending: true,
+			notAttending: true,
 			message: 'Attending',
 			isLoading: false,
-			isAtSchool: false
+			isAtSchool: false,
+			comment: null,
+			isActive: false,
+			messageNotAttend: 'Submit'
 		};
 	},
 	methods: {
@@ -27862,30 +27663,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.isAttending = true;
 				_this.isLoading = false;
 				_this.message = response.data.message;
-				console.log(response.data.message);
+				// console.log(response.data.message);
 			}, function (response) {
 				_this.isLoading = false;
 				_this.message = response.data.message;
 			});
 		},
-		checkForAttendance: function checkForAttendance() {
+		notAttend: function notAttend(lectureId) {
 			var _this2 = this;
 
 			this.isLoading = true;
-			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
+			axios.post('/lecture/notattending/' + lectureId, { comment: this.comment }).then(function (response) {
+				_this2.isAttending = false;
 				_this2.isLoading = false;
-				_this2.isAttending = response.data.attending;
-				console.log(response.data.attending);
+				_this2.messageNotAttend = response.data.message;
+				_this2.isActive = false;
+				_this2.checkForAttendance();
+				// console.log(response.data.message);
+			}, function (response) {
+				_this2.isLoading = false;
+				_this2.messageNotAttend = response.data.message;
+			});
+		},
+
+		checkForAttendance: function checkForAttendance() {
+			var _this3 = this;
+
+			this.isLoading = true;
+			axios.get('/lecture/attendance/' + this.lecture.id).then(function (response) {
+				_this3.isLoading = false;
+				_this3.isAttending = response.data.attending;
+				// console.log(response.data.attending);
 			});
 		},
 		isAtSchoolFunc: function isAtSchoolFunc() {
-			var _this3 = this;
+			var _this4 = this;
 
 			axios.get('/user/isatschool/' + this.lecture.id).then(function (response) {
-				_this3.isAtSchool = response.data.isAtSchool;
+				_this4.isAtSchool = response.data.isAtSchool;
 			});
+		},
+		showModal: function showModal() {
+			if (this.isActive) {
+				this.isActive = false;
+			} else {
+				this.isActive = true;
+			}
 		}
-
 	},
 	created: function created() {
 		this.checkForAttendance();
@@ -27924,6 +27748,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -27941,6 +27767,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	methods: {
+		handler: function handler(handle1, handle2) {
+			this.getLecture(handle1);
+		},
+
 		datesInWeek: function datesInWeek() {
 			//Start of the current week, the add() adds another week, which is specified by a variable. 
 			var startOfWeek = __WEBPACK_IMPORTED_MODULE_0_moment___default()().startOf('week').add(this.chosenWeek, 'weeks');
@@ -27952,16 +27782,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			//Generate all the dates in the given week.
 			while (day <= endOfWeek) {
 				//Pushes the new date to the array. Format example: 14, Su
-				this.days.push(__WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD, dd'));
+				this.days.push({ day: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD'), name: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('dd') });
 
 				day = day.clone().add(1, 'd');
 				//Set the month to the year of the week.
-				this.month = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('MM');
+				this.month = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('MMM');
 				//Set the year to the year of the week.
 				this.year = __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('YYYY');
 			}
 
-			console.log(this.days);
+			// console.log(this.days);
 		},
 		nextWeek: function nextWeek() {
 			//make the chosenweek the next
@@ -27984,7 +27814,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			//Remove the written date (example: , we).
-			var date = date.substring(0, date.indexOf(','));
+			//var date = date.substring(0, date.indexOf(','));
+			var date = date.day;
 			//Create a date that contains the correct information about the picked date. Year, month, day. 
 			var date = this.year + '-' + this.month + '-' + date;
 
@@ -27994,7 +27825,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				// console.log(response.data);
 				//Getting current picked days lectures. By AJAX
 				_this.lectures = response.data.lecture;
-
 				//stop loading icon
 				_this.isLoading = false;
 			});
@@ -28005,7 +27835,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.datesInWeek();
 
 		//When this component is created, get the current day and lectures. 
-		var today = __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('DD, dd');
+		var today = { day: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('DD') };
 		this.getLecture(today);
 	}
 });
@@ -53471,21 +53301,13 @@ var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(147),
   /* template */
-<<<<<<< HEAD
   __webpack_require__(160),
-=======
-  __webpack_require__(159),
->>>>>>> schedule
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-<<<<<<< HEAD
-Component.options.__file = "C:\\wamp64\\www\\app\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
-=======
-Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Example.vue"
->>>>>>> schedule
+Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53496,9 +53318,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5f0b6cce", Component.options)
+    hotAPI.createRecord("data-v-42b8c1ee", Component.options)
   } else {
-    hotAPI.reload("data-v-5f0b6cce", Component.options)
+    hotAPI.reload("data-v-42b8c1ee", Component.options)
   }
 })()}
 
@@ -53513,21 +53335,13 @@ var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(148),
   /* template */
-<<<<<<< HEAD
   __webpack_require__(161),
-=======
-  __webpack_require__(158),
->>>>>>> schedule
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-<<<<<<< HEAD
-Component.options.__file = "C:\\wamp64\\www\\app\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
-=======
-Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Lecture.vue"
->>>>>>> schedule
+Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Lecture.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53538,9 +53352,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5895c8a6", Component.options)
+    hotAPI.createRecord("data-v-45f39402", Component.options)
   } else {
-    hotAPI.reload("data-v-5895c8a6", Component.options)
+    hotAPI.reload("data-v-45f39402", Component.options)
   }
 })()}
 
@@ -53561,11 +53375,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-<<<<<<< HEAD
-Component.options.__file = "C:\\wamp64\\www\\app\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
-=======
-Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Schedule.vue"
->>>>>>> schedule
+Component.options.__file = "C:\\wamp64\\www\\laravel\\mdu\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Schedule.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53576,9 +53386,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e7f7ac10", Component.options)
+    hotAPI.createRecord("data-v-6194bc43", Component.options)
   } else {
-    hotAPI.reload("data-v-e7f7ac10", Component.options)
+    hotAPI.reload("data-v-6194bc43", Component.options)
   }
 })()}
 
@@ -53590,7 +53400,6 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-<<<<<<< HEAD
   return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -53620,8 +53429,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-=======
->>>>>>> schedule
   return _c('section', {
     staticClass: "panel panel-default"
   }, [_c('div', {
@@ -53760,36 +53567,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5895c8a6", module.exports)
-  }
-}
-
-/***/ }),
-/* 159 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5f0b6cce", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-45f39402", module.exports)
   }
 }
 
@@ -53861,7 +53639,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-e7f7ac10", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-6194bc43", module.exports)
   }
 }
 

@@ -192,7 +192,7 @@ header {
 				display: block;	
 			}
 
-			.active-button {
+			.active{
 				background-color: $brand-secondary;
 				}	
 		}
@@ -662,7 +662,6 @@ header {
 				a {
 					color: $light;
 					background-color: $brand-color-dark;
-					width: 100%;
 					display: block;	
 				}
 
