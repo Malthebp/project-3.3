@@ -159,6 +159,5 @@ class UserController extends Controller
         $productHis = User::with('product')->where('id', $userID)->get();
         $currentBal = $this->balance($userID);
         return view('profile/user')->with('productHis', $productHis)->with('currentBal', $currentBal);
-        //return $productHis;
     }
 }

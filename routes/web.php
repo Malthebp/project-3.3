@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shop', 'UserController@shop');
+Route::post('/shop', 'ProductController@shopBuy');
 
 //Schedule test
 Route::get('/schedule', 'ClassController@index');

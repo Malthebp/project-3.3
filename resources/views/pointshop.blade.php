@@ -16,7 +16,7 @@
                         <h4>{{$row->name}}</h4>
                         <p>{{$row->price}}</p>
                     </section>
-                    <p class="shop_item_buy">BUY</p>
+                    <a href="/shop/{{$row->id}}" class="shop_item_buy">BUY</a>
                 </div>
             </div>
             @endfor

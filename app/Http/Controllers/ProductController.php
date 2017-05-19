@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Product;
 
 class ProductController extends Controller
 {
-    //
+    public function shopBuy(Request $request){
+
+    }
 }
