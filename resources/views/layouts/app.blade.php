@@ -21,9 +21,13 @@
 <header>
     <h1>(name on app)</h1>
     <p>{{Auth::user()->balance()}}<i class="fa fa-diamond" aria-hidden="true"></i></p>
+
 </header>
 @endif
+
+    <section class="content-wrapper">
         @yield('content')
+    </section>
 
 @if(!Auth::guest())
 <nav id="bottom-nav">

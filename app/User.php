@@ -45,8 +45,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\SchoolClass');
     }
+
     public function balance(){
         $bal = DB::table('users')->where('id', Auth::id())->value('balance');
         return $bal;
     }
+
 }
