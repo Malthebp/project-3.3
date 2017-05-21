@@ -8,8 +8,7 @@ use App\Lecture;
 
 class SchoolClass extends Model
 {
-    
-
+   
     public function users()
     {
     	return $this->hasMany(User::class);

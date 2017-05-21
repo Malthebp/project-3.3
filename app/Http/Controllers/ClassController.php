@@ -13,12 +13,12 @@ class ClassController extends Controller
 {
     public function index()
     {
-    	$id = Auth::id();
-    	$class = User::with('schoolclass')->find($id);
-    	$lectures = SchoolClass::with('lectures')->find($class->id);
-    	$teacher = Lecture::with('users')->get();
+    	// $id = Auth::id();
+    	// $class = User::with('schoolclass')->find($id);
+    	// $lectures = SchoolClass::with('lectures')->find($class->id);
+    	// $teacher = Lecture::with('users')->get();
 
-    	return view('test.scheduletest')->with('lectures', $teacher);
+    	return view('schedule.calendar');
     	// return $teacher;
     }
 }

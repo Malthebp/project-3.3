@@ -12,7 +12,6 @@ use App\Reason;
 
 class Lecture extends Model
 {
-    
     public function users()
     {
     	return $this->belongsToMany(User::class);
@@ -20,7 +19,7 @@ class Lecture extends Model
 
     public function schoolclass()
     {
-    	return $this->belongsTo(SchoolClass::class);
+    	return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
 
     public function reasons()
@@ -28,5 +27,9 @@ class Lecture extends Model
     	return $this->hasMany(Reason::class);
     }
 
+    public function students()
+    {
+        return $this->hasManyThrough('App\SchoolClass', 'App\User');
+    }
 
 }

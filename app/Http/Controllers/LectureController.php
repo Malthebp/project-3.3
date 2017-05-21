@@ -26,6 +26,14 @@ class LectureController extends Controller
         $lecture = Lecture::with('users')->where('start', 'LIKE', date('Y-m-d', strtotime($date)).'%')->get();
 
         return response()->json(['lecture' => $lecture]); 
+    }
 
+
+    public function getLectureView($id)
+    {
+    	$lecture = Lecture::with('schoolclass', 'users')->find($id);
+        $class = SchoolClass::With('users')->find($lecture->schoolclass->id);
+    	return view('schedule.lecture')->with('lecture', $lecture)->with('students', $class->users);
+        // return $class;
     }
 }

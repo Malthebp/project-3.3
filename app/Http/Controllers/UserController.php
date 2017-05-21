@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 use App\Product;
 use App\Reason;
 use App\User;
@@ -25,13 +26,11 @@ class UserController extends Controller
         return $bal;
     }
 
-    public function changeBal($id, $chaBal){
-        $currentBal = balance($id);
+    public function changeBal($chaBal){
+        $id = Auth::id();
+        $currentBal =$this->balance($id);
         $newBal = $currentBal +($chaBal);
         DB::table('users')->where('id', $id)->update(['balance' => $chaBal]);
-        return response()->json([
-            'balance' => $bal
-            ]);
     }
 
     public function shop(){
@@ -45,20 +44,22 @@ class UserController extends Controller
 	{
 		$this->studentIp = "195.254.169.71";
 		$this->teacherIp = "195.254.169.71";
-		$this->staticTime = mktime(8, 30, 00, 5, 17, 2017);
+		$this->staticTime = mktime(8, 30, 00, 5, 18, 2017);
 		$this->currentTime = date("d-m-Y H:i:s");
 	}
 
-    public function notAttending(Request $request)
+    public function notAttending(Request $request, $lectureId)
     {
-    	$lectureId = $request->input('lectureId');
-    	$comment = $request->input('reason');
+    	$comment = $request->input('comment');
     	$reason = Reason::create(['comment' => $comment]);
     	$reasonId = $reason->id;
 
     	$id = Auth::id();
     	$user = User::find($id)->lectures()->attach($lectureId, ['reason_id' => $reasonId]);
-    	return back();
+
+        return response()->json([
+                'message' => 'Excused'
+            ]);
 
     }
 
@@ -92,10 +93,13 @@ class UserController extends Controller
                 if($x->reason_id == 0)
                 {
                     return response()->json(['attending' => true]);
+                } elseif ($x->reason_id == 1) {
+                    return response()->json(['attending' => 'not attended']);
                 } else {
-                    return response()->json(['attending' => 'not attending']);
+                    return response()->json(['attending' => 'excused']);
                 }
             }
+
         }
         return response()->json(['attending' => false]);
     }
@@ -153,12 +157,24 @@ class UserController extends Controller
 		return false;
 	}
 
-
     public function userData(){
         $userID = Auth::id();
         $productHis = User::with('product')->where('id', $userID)->get();
         $currentBal = $this->balance($userID);
         return view('profile/user')->with('productHis', $productHis)->with('currentBal', $currentBal);
         //return $productHis;
+    }
+
+    public function buyProduct($productId){
+        $productBuy = Product::findOrFail($productId);
+        $id = Auth::id();
+        $currentBal = $this->balance();
+        if($productBuy->price <= $currentBal) {
+            $this->changeBal($productBuy->price);
+            $bought = User::find($id)->products()->attach($productBuy);
+            return $this->userData();
+        } else {
+            return $this->shop();
+        }
     }
 }

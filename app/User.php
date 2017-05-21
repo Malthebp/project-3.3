@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use App\Lecture; 
+use App\Product;
 
 class User extends Authenticatable
 {
@@ -31,10 +32,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function Product() {
-        return $this->belongsToMany('App\Product')->withPivot('created_at');
+    public function products() 
+    {
+        return $this->belongsToMany(Product::class)->withPivot('created_at');
     }
-
 
     public function lectures()
     {
@@ -45,8 +46,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\SchoolClass');
     }
+
     public function balance(){
         $bal = DB::table('users')->where('id', Auth::id())->value('balance');
         return $bal;
     }
+
 }

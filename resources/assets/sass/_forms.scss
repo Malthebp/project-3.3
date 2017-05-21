@@ -1,0 +1,12 @@
+.form {
+	margin: 15px 0px;
+	input {
+		padding: 8px 0px;
+		border-radius: 2px;
+		border: 1px solid $brand-color;
+		width: 100%;
+	}
+	label {
+		margin-bottom: 3px;
+	}
+}
