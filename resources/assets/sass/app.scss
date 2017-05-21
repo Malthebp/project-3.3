@@ -41,6 +41,10 @@ header {
 
 //bottom navigation, potisioning and styling
 
+.router-link-exact-active {
+	color: red;
+}
+
 #bottom-nav {
 	color: $light;
 	position: absolute;

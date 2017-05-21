@@ -27,8 +27,10 @@
 
 @if(!Auth::guest())
 <nav id="bottom-nav">
-    <ul>
-    <li><a href="/calendar"><i class="fa fa-calendar active" aria-hidden="true"></i></a></li><li><a href="/pointshop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li><li><a href="/canvas"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li><li><a href="/user/{{Auth::id()}}"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+    <ul id="navigation">
+<router-link to="home">Home</router-link>
+
+  <button v-on:click="say('hi')">Say hi</button>
     </ul>
 </nav>
 @endif
