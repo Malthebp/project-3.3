@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
+use App\User;
 
 class Product extends Model
 {
     public function users()
     {
-        $userID = Auth::id();
-    	return $this->belongsToMany(User::class)->wherePivot('user_id', $userID)->withPivot('created_at');
+    	return $this->belongsToMany(User::class)->withPivot('created_at');
     }
 }
