@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 use App\Product;
 use App\Reason;
 use App\User;
@@ -25,13 +26,11 @@ class UserController extends Controller
         return $bal;
     }
 
-    public function changeBal($id, $chaBal){
-        $currentBal = balance($id);
+    public function changeBal($chaBal){
+        $id = Auth::id();
+        $currentBal =$this->balance($id);
         $newBal = $currentBal +($chaBal);
         DB::table('users')->where('id', $id)->update(['balance' => $chaBal]);
-        return response()->json([
-            'balance' => $bal
-            ]);
     }
 
     public function shop(){
@@ -158,12 +157,24 @@ class UserController extends Controller
 		return false;
 	}
 
-
     public function userData(){
         $userID = Auth::id();
         $productHis = User::with('product')->where('id', $userID)->get();
         $currentBal = $this->balance($userID);
         return view('profile/user')->with('productHis', $productHis)->with('currentBal', $currentBal);
         //return $productHis;
+    }
+
+    public function buyProduct($productId){
+        $productBuy = Product::findOrFail($productId);
+        $id = Auth::id();
+        $currentBal = $this->balance();
+        if($productBuy->price <= $currentBal) {
+            $this->changeBal($productBuy->price);
+            $bought = User::find($id)->products()->attach($productBuy);
+            return $this->userData();
+        } else {
+            return $this->shop();
+        }
     }
 }

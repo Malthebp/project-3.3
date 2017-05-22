@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
 	});
 	Route::get('/profile/user', 'UserController@userData');
 
-	Route::get('/shop', 'UserController@shop');
+	Route::get('/pointshop', 'UserController@shop');
+	Route::get('/pointshop/{id}', 'UserController@buyProduct');
 
 });

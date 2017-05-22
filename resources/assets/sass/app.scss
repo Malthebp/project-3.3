@@ -18,14 +18,22 @@
 }
 
 a:-webkit-any-link {
-    color: $dark;
-    cursor: auto;
-    text-decoration: none;
+	color: $dark;
+	cursor: auto;
+	text-decoration: none;
 }
 
 .content-wrapper {
 	padding-top: 40px;
 	padding-bottom: 50px;
+	height: 76vh;
+	overflow: scroll;
+}
+
+.content-wrapper:before {
+	content : "";
+	margin-top: 50px;
+
 }
 
 // background image and font-family
@@ -34,6 +42,9 @@ body {
 	background-image: url('/images/background.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
+	.tabs .tab a {
+		padding: 0;
+	}
 }
 
 // header styling 
@@ -44,9 +55,9 @@ header {
 	padding-left: 5px;
 	display: flex;
 
-    justify-content: space-between;
-    position: fixed;
-    background-color: $brand-color;
+	justify-content: space-between;
+	position: fixed;
+	background-color: $brand-color;
 	
 	h1 {
 		font-size: 1em;
@@ -69,8 +80,7 @@ header {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	background-color: $dark;
-
+	position: fixed;
 	ul{
 		padding: 0;
 		width: 100%;
@@ -81,7 +91,7 @@ header {
 			width: (100%/4);
 			text-align: center;
 			float: left;
-    		box-sizing: border-box;
+			box-sizing: border-box;
 
 			a {
 				color: $light;
@@ -104,6 +114,7 @@ header {
 	color: $brand-secondary ;
 
 }
+
 
 // login page
 .login {
@@ -182,27 +193,45 @@ header {
 
 /* Pointshop */
 #pointshop {
+	width: 94%;
+	margin: 3%;
+	.panel {
+		background-color: white;
+		width: 100%;
+		border-style: none;
+		box-sizing: border-box;
+		display: table;
+		margin: 15px 0;
+		padding: 0;
+	}
 	.item_box{
 		padding: 5px 10px;
+		box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.31);
 	}
 
 	h1 {
 		color: #80b5c1;
 	}
+	h4 {
+		font-size: 17px;
+		margin-top: 8px;
+		margin-bottom: 7px;
+	}
 	.shop_item_image {
 		width: 45px;
 		float: left;
-    	margin: 7px 10px 7px 0px;
+		margin: 3px 14px 7px 6px;
 	}
 	.shop_item_buy {
 		color: orange;
 		float: right;
 		border-left: 1px solid orange;
-		padding: 7px 0px 7px 10px;
-		font-size: 20px;
+		padding: 15px 0px 14px 12px;
+		font-size: 19px;
 	}
 	.shop_item_desc {
 		display: inline-block;
+		padding: 5px 0 7px 0;
 		h4 {
 			line-height: 0.7;
 			color: #64656b;
@@ -270,7 +299,7 @@ header {
 
 			.active{
 				background-color: $brand-secondary;
-				}	
+			}	
 		}
 
 	}
@@ -287,7 +316,7 @@ header {
 		margin-right: auto;
 		background-color: $light;
 		padding: 3px;
-		margin-bottom: 10px;
+		margin-top: 10px;
 
 		div{
 			display: flex;
@@ -410,38 +439,38 @@ header {
 #bagdes {
 
 	article {
-			display: block;
-			justify-content:space-between;
-			width: 95%;
-			margin-left: auto;
-			margin-right: auto;
-			background-color: $light;
-			padding: 3px;
-			margin-bottom: 10px;
+		display: block;
+		justify-content:space-between;
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: $light;
+		padding: 3px;
+		margin-top: 10px;
 
-			div{
-				display: inline-block;
-				color: $brand-secondary;
-				border-right: solid 1px $brand-secondary;
-				font-size: 2em;
-				width: 15%;
-				text-align: center;
+		div{
+			display: inline-block;
+			color: $brand-secondary;
+			border-right: solid 1px $brand-secondary;
+			font-size: 2em;
+			width: 15%;
+			text-align: center;
 
-			}
-
-			.inactive-bagde{
-				color: $dark;
-				border-right: solid 1px $dark;
-			}
-
-			h5{
-				display: inline-block;
-				color: $dark;
-				font-size: 1em;
-				margin: 0;
-				padding-top: 8px;
-			}
 		}
+
+		.inactive-bagde{
+			color: $dark;
+			border-right: solid 1px $dark;
+		}
+
+		h5{
+			display: inline-block;
+			color: $dark;
+			font-size: 1em;
+			margin: 0;
+			padding-top: 8px;
+		}
+	}
 }
 
 // schedule
@@ -507,11 +536,11 @@ header {
 
 .schedule-button {
 	display: inline;
-    background: none;
-    border: none;
-    color: $brand-color;
-    font-size: 1.3em;
-    width: 10%;
+	background: none;
+	border: none;
+	color: $brand-color;
+	font-size: 1.3em;
+	width: 10%;
 
 } 
 
@@ -555,18 +584,18 @@ header {
 
 		.start-time {
 			font-size: 6em;
-    		font-weight: bold;
-    		text-align: right;
-    		-webkit-margin-before: 0;
-    		-webkit-margin-after: 0;
-    		line-height: 0.9;
+			font-weight: bold;
+			text-align: right;
+			-webkit-margin-before: 0;
+			-webkit-margin-after: 0;
+			line-height: 0.9;
 			a {
 				color: #f36c37;
 			}
-				
-    		}
-			sup{
-				font-size: 0.5em;
+
+		}
+		sup{
+			font-size: 0.5em;
 			
 		}
 
@@ -617,18 +646,18 @@ header {
 
 	.btn-danger, .btn-danger:disabled {
 		color: $light;
-    	background-color: $brand-secondary;
-   		border-style: none;
-   		opacity: 0.7;
-   		pointer: not-allowed;
-   	}
+		background-color: $brand-secondary;
+		border-style: none;
+		opacity: 0.7;
+		pointer: not-allowed;
+	}
 
 	.btn-success, .btn-success:disabled {
 		color: $light;
-   		background-color: $brand-color;
-   		border-style: none;	
-   		opacity: 0.7;
-   		pointer: not-allowed;
+		background-color: $brand-color;
+		border-style: none;	
+		opacity: 0.7;
+		pointer: not-allowed;
 	}
 	
 }
@@ -651,7 +680,7 @@ header {
 	margin-right: auto;
 
 	.content {
-	padding: 10px;
+		padding: 10px;
 
 		.close {
 			width: 100%;
@@ -743,7 +772,7 @@ header {
 
 				.active-button {
 					background-color: $brand-secondary;
-					}	
+				}	
 			}
 
 		}
@@ -760,95 +789,95 @@ header {
 	float: left;
 }
 .student{
+	display: flex;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	background-color: $brand-color;
+	justify-content:space-between;
+
+	section{
 		display: flex;
-	    width: 95%;
-	    margin-left: auto;
-	    margin-right: auto;
-	    margin-top: 5px;
+		justify-content:flex-start;
+
+		img {
+			width: 40px;
+			height: 40px;
+			border-radius: 20px;
+			-webkit-border-radius: 20px;
+			-moz-border-radius: 20px;
+			display: inline-block;
+			margin: 5px;
+		}
+
+		p{
+			display: inline-block;
+			color: $dark;
+			font-size: 1em;
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+	}
+
+	/* The switch - the box around the slider */
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 60px;
+		height: 34px;
+		margin-bottom: auto;
+		margin-top: auto;
+		margin-right: 5px;
+	}
+
+	/* Hide default HTML checkbox */
+	.switch input {display:none;}
+
+	/* The slider */
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $light;
+		-webkit-transition: .4s;
+		transition: .4s;
+		border: solid 1px $brand-color;
+	}
+
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 26px;
+		width: 26px;
+		left: 4px;
+		bottom: 4px;
 		background-color: $brand-color;
-		justify-content:space-between;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
 
-		section{
-			display: flex;
-			justify-content:flex-start;
+	input:checked + .slider {
+		background-color: $brand-color-dark;
+	}
 
-			img {
-				width: 40px;
-				height: 40px;
-				border-radius: 20px;
-				-webkit-border-radius: 20px;
-				-moz-border-radius: 20px;
-				display: inline-block;
-				margin: 5px;
-			}
+	input:checked + .slider:before {
+		-webkit-transform: translateX(26px);
+		-ms-transform: translateX(26px);
+		transform: translateX(26px);
+	}
 
-			p{
-				display: inline-block;
-				color: $dark;
-				font-size: 1em;
-				margin-top: auto;
-				margin-bottom: auto;
-			}
-		}
+	/* Rounded sliders */
+	.slider.round {
+		border-radius: 34px;
+	}
 
-		/* The switch - the box around the slider */
-		.switch {
-		  	position: relative;
-		  	display: inline-block;
-		  	width: 60px;
-		  	height: 34px;
-		  	margin-bottom: auto;
-		  	margin-top: auto;
-		  	margin-right: 5px;
-		}
-
-		/* Hide default HTML checkbox */
-		.switch input {display:none;}
-
-		/* The slider */
-		.slider {
-		  position: absolute;
-		  cursor: pointer;
-		  top: 0;
-		  left: 0;
-		  right: 0;
-		  bottom: 0;
-		  background-color: $light;
-		  -webkit-transition: .4s;
-		  transition: .4s;
-		    border: solid 1px $brand-color;
-		}
-
-		.slider:before {
-		  position: absolute;
-		  content: "";
-		  height: 26px;
-		  width: 26px;
-		  left: 4px;
-		  bottom: 4px;
-		  background-color: $brand-color;
-		  -webkit-transition: .4s;
-		  transition: .4s;
-		}
-
-		input:checked + .slider {
-		  background-color: $brand-color-dark;
-		}
-
-		input:checked + .slider:before {
-		  -webkit-transform: translateX(26px);
-		  -ms-transform: translateX(26px);
-		  transform: translateX(26px);
-		}
-
-		/* Rounded sliders */
-		.slider.round {
-		  border-radius: 34px;
-		}
-
-		.slider.round:before {
-		  border-radius: 50%;
-		}
+	.slider.round:before {
+		border-radius: 50%;
+	}
 }
 
 // group selector
@@ -894,7 +923,7 @@ header {
 
 
 
-	
+
 
 
 
