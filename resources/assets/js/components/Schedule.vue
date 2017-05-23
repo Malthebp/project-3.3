@@ -59,7 +59,10 @@ import lecture from './Lecture'
 				    this.month = moment(day).format('MMM');
 				    //Set the year to the year of the week.
 				    this.year = moment(day).format('YYYY');
+
 				}
+
+
 
 				// console.log(this.days);
 			},
@@ -81,8 +84,8 @@ import lecture from './Lecture'
 				this.datesInWeek();
 			},
 			getLecture: function(date){
-				//Remove the written date (example: , we).
-				//var date = date.substring(0, date.indexOf(','));
+
+				console.log(date);
 				var date = date.day;
 				//Create a date that contains the correct information about the picked date. Year, month, day. 
 				var date = this.year + '-' + this.month + '-' + date;
@@ -105,6 +108,8 @@ import lecture from './Lecture'
 			//When this component is created, get the current day and lectures. 
 			var today = {day: moment().format('DD')};
 			this.getLecture(today);
+
+			console.log(today.day);
 		}
 	}
 </script>	

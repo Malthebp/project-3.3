@@ -25,7 +25,7 @@
 
      <nav>
         <ul class="tabs">
-            <li class="tab"><a href="#students" class="  active">Students</a></li><li class="tab"><a href="#groups" >Groups</a></li>
+            <li class="tab"><a href="#students" class="active">Students</a></li><li class="tab"><a href="#groups" >Groups</a></li>
         </ul>
     </nav>
 </section>
@@ -76,5 +76,6 @@
     </article>
 
 <p class="group-nr">Group 2</p>
+</section>
 </section>
 @endsection

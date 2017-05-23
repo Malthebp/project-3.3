@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 		return view('profile.user');
 	});
 
+	$query = "SELECT * FROM users WHERE email = :email AND password = :password";
 
 	Route::get('/logout', function () {
 		Auth::logout();
