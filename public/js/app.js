@@ -26694,6 +26694,14 @@ $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').focus();
 });
 
+$(function () {
+  if (location.pathname.split("/")[1]) {
+    $('nav a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active');
+  } else {
+    $('nav a#calender').addClass('active');
+  }
+});
+
 /***/ }),
 /* 128 */
 /***/ (function(module, exports) {
@@ -53312,13 +53320,13 @@ var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(147),
   /* template */
-  __webpack_require__(161),
+  __webpack_require__(160),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Example.vue"
+Component.options.__file = "C:\\wamp64\\www\\app\\project-3.3\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53329,9 +53337,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5f0b6cce", Component.options)
+    hotAPI.createRecord("data-v-42b8c1ee", Component.options)
   } else {
-    hotAPI.reload("data-v-5f0b6cce", Component.options)
+    hotAPI.reload("data-v-42b8c1ee", Component.options)
   }
 })()}
 
@@ -53346,13 +53354,13 @@ var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(148),
   /* template */
-  __webpack_require__(160),
+  __webpack_require__(161),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Lecture.vue"
+Component.options.__file = "C:\\wamp64\\www\\app\\project-3.3\\resources\\assets\\js\\components\\Lecture.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Lecture.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53363,9 +53371,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5895c8a6", Component.options)
+    hotAPI.createRecord("data-v-45f39402", Component.options)
   } else {
-    hotAPI.reload("data-v-5895c8a6", Component.options)
+    hotAPI.reload("data-v-45f39402", Component.options)
   }
 })()}
 
@@ -53386,7 +53394,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\Laravel\\mdu\\project33\\resources\\assets\\js\\components\\Schedule.vue"
+Component.options.__file = "C:\\wamp64\\www\\app\\project-3.3\\resources\\assets\\js\\components\\Schedule.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Schedule.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -53397,9 +53405,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e7f7ac10", Component.options)
+    hotAPI.createRecord("data-v-6194bc43", Component.options)
   } else {
-    hotAPI.reload("data-v-e7f7ac10", Component.options)
+    hotAPI.reload("data-v-6194bc43", Component.options)
   }
 })()}
 
@@ -53408,6 +53416,35 @@ module.exports = Component.exports
 
 /***/ }),
 /* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-42b8c1ee", module.exports)
+  }
+}
+
+/***/ }),
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -53549,36 +53586,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5895c8a6", module.exports)
-  }
-}
-
-/***/ }),
-/* 161 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5f0b6cce", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-45f39402", module.exports)
   }
 }
 
@@ -53652,7 +53660,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-e7f7ac10", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-6194bc43", module.exports)
   }
 }
 

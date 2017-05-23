@@ -30,7 +30,7 @@ class UserController extends Controller
         $id = Auth::id();
         $currentBal =$this->balance($id);
         $newBal = $currentBal +($chaBal);
-        DB::table('users')->where('id', $id)->update(['balance' => $chaBal]);
+        DB::table('users')->where('id', $id)->update(['balance' => $newBal]);
     }
 
     public function shop(){
@@ -169,7 +169,7 @@ class UserController extends Controller
         $productBuy = Product::findOrFail($productId);
         $id = Auth::id();
         $currentBal = $this->balance();
-        if($productBuy->price <= $currentBal) {
+        if($productBuy->price < $currentBal) {
             $this->changeBal($productBuy->price);
             $bought = User::find($id)->products()->attach($productBuy);
             return $this->userData();

@@ -32,7 +32,7 @@
 @if(!Auth::guest())
 <nav id="bottom-nav">
     <ul>
-    <li><a href="/"><i class="fa fa-calendar active" aria-hidden="true"></i></a></li><li><a href="/pointshop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li><li><a href="/canvas"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li><li><a href="/profile/user"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+    <li><a href="/" id="calender"><i class="fa fa-calendar" aria-hidden="true"></i></a></li><li><a href="/pointshop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li><li><a href="https://www.canvaslms.com/"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></li><li><a href="/profile/user"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
     </ul>
 </nav>
 @endif

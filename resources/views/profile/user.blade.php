@@ -4,7 +4,7 @@
 
 <section id="userinfo">
     <img id="userimage" src="../images/userimage.jpg">
-    <h2>John Doe</h2>
+    <h2>{{$productHis[0]->name}}</h2>
 </section>
 
 <nav id="user-nav">
@@ -16,14 +16,14 @@
 <!-- history content  -->
 <section id="history" class="dont_show">
     @foreach ($productHis as $row)
-    @for ($i = 0; $i <= count($row->product)-1; $i++)
+    @for ($i = 0; $i <= count($row->products)-1; $i++)
     <article>
         <div>
-        <h5>{{$row->name}}</h5><p @if($row->product[$i]->price < 0) class="negative balance"> @else class="balance">+@endif
-        {{$row->product[$i]->price}}</p>
+        <h5>{{$row->products[$i]->name}}</h5><p @if($row->products[$i]->price < 0) class="negative balance"> @else class="balance">+@endif
+        {{$row->products[$i]->price}}</p>
         </div>
         <div>
-            <h6>{{date('j. F Y ', strtotime($row->product[$i]->pivot->created_at))}}</h6><p class="sum">{{$currentBal = $currentBal - $row->product[$i]->price}}</p>
+            <h6>{{date('j. F Y ', strtotime($row->products[$i]->pivot->created_at))}}</h6><p class="sum">{{$currentBal = $currentBal - $row->products[$i]->price}}</p>
         </div>
     </article>
     @endfor

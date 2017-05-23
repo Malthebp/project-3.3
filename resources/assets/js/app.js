@@ -29,3 +29,10 @@ $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
 });
 
+$(function() {
+	if(location.pathname.split("/")[1]){
+  		$('nav a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active');
+	} else {
+		$('nav a#calender').addClass('active');
+	}
+});
