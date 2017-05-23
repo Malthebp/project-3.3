@@ -6,22 +6,21 @@
     <section class="content">
         <div class="close"><a href="/"><i class="fa fa-times" aria-hidden="true"></i></a></div>
         <div class="lecture-info">
-        @foreach($lecture->users as $teacher)
-        <img src="{{$teacher->image}}">
-        @endforeach
-        <ul id="info">
-            <li>{{$lecture->subject}}</li>
-            <li>{{$lecture->location}}</li>
-            <li>@foreach($lecture->users as $teacher){{$teacher->name}}@endforeach</li>
-        </ul>
-        <ul id="date">
-        <li>{{date('d. M', strtotime($lecture->start))}}</li>
-        <li>{{date('H:i', strtotime($lecture->start))}} - {{date('H:i', strtotime($lecture->end))}}</li>
-        </ul>
+            @foreach($lecture->users as $teacher)
+                <img src="{{$teacher->image}}">
+            @endforeach
+            <ul id="info">
+                <li>{{$lecture->subject}}</li>
+                <li>{{$lecture->location}}</li>
+                <li>@foreach($lecture->users as $teacher){{$teacher->name}}@endforeach</li>
+            </ul>
+            <ul id="date">
+                <li>{{date('d. M', strtotime($lecture->start))}}</li>
+                <li>{{date('H:i', strtotime($lecture->start))}} - {{date('H:i', strtotime($lecture->end))}}</li>
+            </ul>
         </div>
-
-    <p>{{$lecture->description}}</p>
-</section>
+        <p>{{$lecture->description}}</p>
+    </section>
 
      <nav>
         <ul class="tabs">

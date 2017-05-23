@@ -27750,6 +27750,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -27763,7 +27765,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			month: null,
 			lectures: [],
 			message: null,
-			isLoading: false
+			isLoading: false,
+			emptyMessage: null
 		};
 	},
 	methods: {
@@ -27781,8 +27784,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			//Generate all the dates in the given week.
 			while (day <= endOfWeek) {
+				var dayArray = { day: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD'), name: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('dd') };
 				//Pushes the new date to the array. Format example: 14, Su
-				this.days.push({ day: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('DD'), name: __WEBPACK_IMPORTED_MODULE_0_moment___default()(day).format('dd') });
+				this.days.push(dayArray);
 
 				day = day.clone().add(1, 'd');
 				//Set the month to the year of the week.
@@ -27813,19 +27817,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getLecture: function getLecture(date) {
 			var _this = this;
 
-			console.log(date);
-			var date = date.day;
+			// var date = date.day;
 			//Create a date that contains the correct information about the picked date. Year, month, day. 
-			var date = this.year + '-' + this.month + '-' + date;
+			// var date = this.year + '-' + this.month + '-' + date.day;
+			var dateFormatted = this.year + '-' + this.month + '-' + date.day;
 
 			//Start loading icon
 			this.isLoading = true;
-			axios.get('/lecture/get/' + date).then(function (response) {
+			axios.get('/lecture/get/' + dateFormatted).then(function (response) {
 				// console.log(response.data);
 				//Getting current picked days lectures. By AJAX
 				_this.lectures = response.data.lecture;
 				//stop loading icon
 				_this.isLoading = false;
+				if (_this.lectures.length == 0) {
+					var randomMessage = ['Lucky you, there is nothing this day.', 'Nothing this day. Maybe you should do something youself?', 'Go nuts, \'cause you are off this day.', 'Did you do your homework? Because you are off this day.'];
+					_this.emptyMessage = randomMessage[Math.floor(Math.random() * randomMessage.length)];
+				} else {
+					_this.emptyMessage = "";
+				}
 			});
 		}
 	},
@@ -53621,13 +53631,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-6"
   }, [_vm._l((_vm.lectures), function(lecture) {
-    return (!_vm.isLoading) ? _c('lecture', {
+    return (!_vm.isLoading && !_vm.emptyMessage) ? _c('lecture', {
       key: lecture.id,
       attrs: {
         "lecture": lecture
       }
     }) : _vm._e()
-  }), _vm._v(" "), (_vm.isLoading) ? _c('span', {
+  }), _vm._v(" "), (_vm.emptyMessage) ? _c('h2', {
+    staticClass: "noLectures"
+  }, [_vm._v(_vm._s(_vm.emptyMessage))]) : _vm._e(), _vm._v(" "), (_vm.isLoading) ? _c('span', {
     staticClass: "loader"
   }, [_c('i', {
     staticClass: "fa fa-spinner fa-spin",

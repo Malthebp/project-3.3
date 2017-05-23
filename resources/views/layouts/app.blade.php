@@ -19,7 +19,7 @@
     <div id="app">
 @if(!Auth::guest())
 <header>
-    <h1>(name on app)</h1>
+    <h1>Rdy Up</h1>
     <p>{{Auth::user()->balance()}}<i class="fa fa-diamond" aria-hidden="true"></i></p>
 
 </header>

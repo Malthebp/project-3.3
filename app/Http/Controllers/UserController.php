@@ -159,7 +159,7 @@ class UserController extends Controller
 
     public function userData(){
         $userID = Auth::id();
-        $productHis = User::with('product')->where('id', $userID)->get();
+        $productHis = User::with('products')->where('id', $userID)->get();
         $currentBal = $this->balance($userID);
         return view('profile/user')->with('productHis', $productHis)->with('currentBal', $currentBal);
         //return $productHis;

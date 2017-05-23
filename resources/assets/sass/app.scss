@@ -921,7 +921,13 @@ header {
 	margin-top: 20px;
 }
 
+.noLectures {
+	color: $light;
+}
 
+.tabs .indicator {
+	display: none !important;
+}
 
 
 
