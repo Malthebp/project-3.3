@@ -11,7 +11,7 @@
                         <!-- <label for="email" class="col-md-4 control-label">E-mail Address</label> -->
                         <div class="login--form-field">
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="username" required autofocus>
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="email" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
