@@ -3,7 +3,7 @@
 Eksamensprototype for 3. semesters
 
 Login oplysninger
-Username: Malthebpet@gmail.com
+Username: Malthe@intrace.dk
 Pass: 123456
 
 ## Guide - localhost
