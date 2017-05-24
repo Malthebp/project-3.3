@@ -2,9 +2,13 @@
 
 Eksamensprototype for 3. semesters
 
+http://rdyup.peterrytter.com
+!OBS Husk at se siden via Chromes developer tool med iPhone 5's responsive settings 
+
 Login oplysninger
 Username: Malthe@intrace.dk
 Pass: 123456
+
 
 ## Guide - localhost
 
@@ -18,4 +22,6 @@ Hvis prototypen skal sættes op på localhost, er der her en installationsguide 
 
 4. php artisan serve
 
-5. tilgå websitet via: localhost:8000
+5. tilgå websitet i chrome browseren via: localhost:8000
+
+6. Åben Developer tools (f12) og sæt den til responsive og vælg iPhone 5
